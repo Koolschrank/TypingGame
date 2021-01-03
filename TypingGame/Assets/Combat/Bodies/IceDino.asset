@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdb9e8ff006f91f4ea6427c58cbc1007, type: 3}
+  m_Name: IceDino
+  m_EditorClassIdentifier: 
+  _name: Ice dagon
+  sprite: {fileID: -5207405727549496978, guid: 03a31101566f544428d0c4ed51490a35, type: 3}
+  animaton: {fileID: 22100000, guid: 5fba1279aa9709846b4a1d514fdea9fe, type: 2}
+  strenght: 5
+  intellect: 0
+  defence: 4
+  resistance: 3
+  abilities:
+  - {fileID: 11400000, guid: c1c4e55161197164293f9cf296a652f2, type: 2}
+  - {fileID: 11400000, guid: 2d79795fdff558849a45bfe4d7dfd9ed, type: 2}
+  - {fileID: 11400000, guid: cc815dbfacc48ac41a977a205c2effd2, type: 2}
+  - {fileID: 11400000, guid: 24099bb347b71f04c922c991688827b4, type: 2}
+  - {fileID: 11400000, guid: ff2a7ec384b2e3e40b2d7803fc40b9da, type: 2}
+  fire: 1
+  ice: 3
+  thunder: 0
+  passiveSkills: 03000000
+  info: double strenght wile on 50% health or lower. Can't cast magic

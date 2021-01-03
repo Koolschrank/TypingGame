@@ -1,0 +1,208 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db61b78107d8023478d0356ee27a16ac, type: 3}
+  m_Name: AllAbilities
+  m_EditorClassIdentifier: 
+  Abilities:
+  - {fileID: 11400000, guid: d2d791a7bfac04a43bf9c001aac02c2d, type: 2}
+  - {fileID: 11400000, guid: 51e13f1d2794cc746afa60317362e68b, type: 2}
+  - {fileID: 11400000, guid: e31b502f95de65e48b4d0836eb16f31c, type: 2}
+  - {fileID: 11400000, guid: 0f5d8d158239e1a4882665801517da11, type: 2}
+  - {fileID: 11400000, guid: fc0294cf52e04e84bb611a4fa2c9555c, type: 2}
+  - {fileID: 11400000, guid: ff2a7ec384b2e3e40b2d7803fc40b9da, type: 2}
+  - {fileID: 11400000, guid: abd36be0a794a2b4cbce66d8564f24be, type: 2}
+  - {fileID: 11400000, guid: e78a5d159833fce469f9a481edaef848, type: 2}
+  - {fileID: 11400000, guid: 4c78045bc03fd2a4faf4b724d2b00039, type: 2}
+  - {fileID: 11400000, guid: 8ee9ac10dd82a7045ab9807b455a2c52, type: 2}
+  - {fileID: 11400000, guid: 729223ede9d79544f8268c5968b160b1, type: 2}
+  - {fileID: 11400000, guid: 4e03c335eb2ae5e46a52be652ce6a3c0, type: 2}
+  - {fileID: 11400000, guid: e599cb9171db7884bac76182d5698bdf, type: 2}
+  - {fileID: 11400000, guid: c3dc7e77d37574b4cb02aaa23e955a1e, type: 2}
+  - {fileID: 11400000, guid: e9f6b92c3b3a0a4459482753de335986, type: 2}
+  - {fileID: 11400000, guid: 952ab7a2d55eaa94ebb8949535fb11d9, type: 2}
+  - {fileID: 11400000, guid: 9a577eb1610b6dd4aa9150cbeff01ef0, type: 2}
+  - {fileID: 11400000, guid: c8e169640d15302499bc62f7fde1b06e, type: 2}
+  - {fileID: 11400000, guid: fbe932a86807611448cc97fb51bf33b2, type: 2}
+  - {fileID: 11400000, guid: 2d79795fdff558849a45bfe4d7dfd9ed, type: 2}
+  - {fileID: 11400000, guid: cc815dbfacc48ac41a977a205c2effd2, type: 2}
+  - {fileID: 11400000, guid: 70dd81a3eb9159a408adc8ab89fd13ca, type: 2}
+  - {fileID: 11400000, guid: 837c66f28705a734c8299f98776212ff, type: 2}
+  - {fileID: 11400000, guid: 0030cf4347b7ae14db9f86b4a4b1a267, type: 2}
+  - {fileID: 11400000, guid: 24099bb347b71f04c922c991688827b4, type: 2}
+  - {fileID: 11400000, guid: 6ce0cb3fca68be740887fb850b3f4e22, type: 2}
+  - {fileID: 11400000, guid: 11f80f7570ab4724489b473b02d5839b, type: 2}
+  - {fileID: 11400000, guid: 7c48348da0d71ce4888733fce6574a3b, type: 2}
+  - {fileID: 11400000, guid: 3acf758976b064f4eb6fba5040e63f7d, type: 2}
+  - {fileID: 11400000, guid: 83717e2bf3db0ee48aef4e44e26c8081, type: 2}
+  - {fileID: 11400000, guid: 7c0d67e7776edd54fa58d9e6b8b2a77c, type: 2}
+  - {fileID: 11400000, guid: 03126597618307f4dad5fe5cf8dae8de, type: 2}
+  - {fileID: 11400000, guid: 1826cc6e55dba584a8e42a569b74eaf2, type: 2}
+  - {fileID: 11400000, guid: 06f46a49711d847449399ae84e1e18de, type: 2}
+  - {fileID: 11400000, guid: f7b201608602fc7479860127682fbb91, type: 2}
+  - {fileID: 11400000, guid: 9aeebf28cecf8c34c97de480db11bfad, type: 2}
+  - {fileID: 11400000, guid: d8fde826589b06c468cd472d25ca433f, type: 2}
+  - {fileID: 11400000, guid: 96f3d5ac6d8a2f04da38678c0b694367, type: 2}
+  - {fileID: 11400000, guid: 814fd9574db398d448a3ce2521be3453, type: 2}
+  - {fileID: 11400000, guid: b87baa2942be63547a67a8066b0be6d7, type: 2}
+  - {fileID: 11400000, guid: 8043e5dce87e9fe429ee89e513e0482f, type: 2}
+  - {fileID: 11400000, guid: 70e8092c3bc6b104283559542019f808, type: 2}
+  - {fileID: 11400000, guid: 1d96d79cabeff2a4cbafaaa7fc237260, type: 2}
+  - {fileID: 11400000, guid: c1c4e55161197164293f9cf296a652f2, type: 2}
+  - {fileID: 11400000, guid: ced85bd093ed48c499df0d0f6092cfe2, type: 2}
+  - {fileID: 11400000, guid: 86f6323763766c14ea22b346ce59d46b, type: 2}
+  - {fileID: 11400000, guid: 6e666d710f2d2644f896800706c18186, type: 2}
+  - {fileID: 11400000, guid: 8eb98110d14572b489f3ca22cc840b7a, type: 2}
+  - {fileID: 11400000, guid: 2d619fbe63487594fa6ece7b5645a5c3, type: 2}
+  - {fileID: 11400000, guid: 5c258957ec497da4d8b7f6615f46a6aa, type: 2}
+  - {fileID: 11400000, guid: 39cbb59a23bbc0d4ea5d5bcd57b6e7bb, type: 2}
+  - {fileID: 11400000, guid: 9914b90543aaae84496907cc89bfc947, type: 2}
+  - {fileID: 11400000, guid: 9914b90543aaae84496907cc89bfc947, type: 2}
+  - {fileID: 11400000, guid: 9914b90543aaae84496907cc89bfc947, type: 2}
+  - {fileID: 11400000, guid: 9914b90543aaae84496907cc89bfc947, type: 2}
+  playerBodies:
+  - {fileID: 11400000, guid: d6b004a898c3be047b7ad41f463449bc, type: 2}
+  - {fileID: 11400000, guid: 4bf5dd1af37b72d45a6de7b9ad5e6fd0, type: 2}
+  - {fileID: 11400000, guid: 270dc50245c781f45a55ebcd4df96db2, type: 2}
+  - {fileID: 11400000, guid: 058239fbd234df4428dfc95d4d2da793, type: 2}
+  - {fileID: 11400000, guid: 3a07e297b1c08124bac9caa6ba60ac44, type: 2}
+  BuffList:
+  - Name: STR UP
+    stats:
+    - stat: 0
+      power: 4
+    turnsLeft: 3
+  - Name: Magic UP
+    stats:
+    - stat: 1
+      power: 4
+    turnsLeft: 3
+  - Name: Shild
+    stats:
+    - stat: 2
+      power: 5
+    turnsLeft: 0
+  - Name: NullFire
+    stats:
+    - stat: 4
+      power: 2
+    turnsLeft: 3
+  - Name: Def Down
+    stats:
+    - stat: 2
+      power: -5
+    turnsLeft: 3
+  - Name: Magic Shild
+    stats:
+    - stat: 3
+      power: 5
+    turnsLeft: 3
+  - Name: ThunderAbsorb
+    stats:
+    - stat: 6
+      power: 3
+    turnsLeft: 3
+  - Name: Mind Charge
+    stats:
+    - stat: 1
+      power: 8
+    turnsLeft: 1
+  - Name: Charge
+    stats:
+    - stat: 0
+      power: 8
+    turnsLeft: 1
+  - Name: Mind Charge
+    stats:
+    - stat: 1
+      power: 6
+    turnsLeft: 1
+  - Name: Mind Charge
+    stats:
+    - stat: 1
+      power: 6
+    turnsLeft: 1
+  - Name: Mind Charge
+    stats:
+    - stat: 1
+      power: 6
+    turnsLeft: 1
+  - Name: Mind Charge
+    stats:
+    - stat: 1
+      power: 6
+    turnsLeft: 1
+  - Name: Mind Charge
+    stats:
+    - stat: 1
+      power: 6
+    turnsLeft: 1
+  - Name: Fire Null
+    stats:
+    - stat: 4
+      power: 2
+    turnsLeft: 3
+  - Name: Ice Null
+    stats:
+    - stat: 5
+      power: 2
+    turnsLeft: 3
+  - Name: Thunder Null
+    stats:
+    - stat: 6
+      power: 2
+    turnsLeft: 3
+  - Name: Fire Absorb
+    stats:
+    - stat: 4
+      power: 3
+    turnsLeft: 3
+  - Name: Ice Absorb
+    stats:
+    - stat: 5
+      power: 3
+    turnsLeft: 3
+  - Name: Thunder Absorb
+    stats:
+    - stat: 6
+      power: 3
+    turnsLeft: 3
+  - Name: ElementalShild
+    stats:
+    - stat: 4
+      power: 1
+    - stat: 5
+      power: 1
+    - stat: 6
+      power: 1
+    turnsLeft: 3
+  - Name: Monkey Brain
+    stats:
+    - stat: 0
+      power: 6
+    - stat: 1
+      power: -10
+    turnsLeft: 3
+  - Name: Fire Null
+    stats:
+    - stat: 4
+      power: 2
+    turnsLeft: 3
+  - Name: Fire Null
+    stats:
+    - stat: 4
+      power: 2
+    turnsLeft: 3
+  - Name: Fire Null
+    stats:
+    - stat: 4
+      power: 2
+    turnsLeft: 3

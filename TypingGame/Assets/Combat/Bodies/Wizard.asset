@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdb9e8ff006f91f4ea6427c58cbc1007, type: 3}
+  m_Name: Wizard
+  m_EditorClassIdentifier: 
+  _name: Wizard
+  sprite: {fileID: -9112887182806983685, guid: 03a31101566f544428d0c4ed51490a35, type: 3}
+  animaton: {fileID: 22100000, guid: 6c5e42c754c05df4b95905de0c321db9, type: 2}
+  strenght: 2
+  intellect: 7
+  defence: 2
+  resistance: 6
+  abilities:
+  - {fileID: 11400000, guid: 1d96d79cabeff2a4cbafaaa7fc237260, type: 2}
+  - {fileID: 11400000, guid: b87baa2942be63547a67a8066b0be6d7, type: 2}
+  - {fileID: 11400000, guid: 3acf758976b064f4eb6fba5040e63f7d, type: 2}
+  fire: 0
+  ice: 0
+  thunder: 2
+  passiveSkills: 0000000004000000
+  info: Revives player with 50% health once per battle(consumes 10 MP, can also be
+    used under 10MP))

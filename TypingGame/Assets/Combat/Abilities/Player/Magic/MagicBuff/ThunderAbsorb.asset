@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e088ed5ef6084bf45b2e62b1060bb0e5, type: 3}
+  m_Name: ThunderAbsorb
+  m_EditorClassIdentifier: 
+  _name: Thunder Absorb
+  _words: shild do your thing stupid
+  _word_count: 5
+  time_per_character: 1.5
+  gimmick: 0
+  _cost_typ: 2
+  _cost: 4
+  power: 0
+  stat_strenght: 0
+  _typ: 3
+  _element: 3
+  _target: 2
+  _animation: 0
+  _sprite_object: {fileID: 0}
+  Impact_object: {fileID: 0}
+  impact_size: 1
+  _info: Absorb thunder attacks for 3 turns
+  effect_array:
+  - effect: 2
+    value1: 19
+    value2: 0
+  menuIcon: {fileID: 21300000, guid: 72ec06c690f616b4ab00189d90e368b6, type: 3}
+  icon_size: 2
+  spriteRotatet: 0

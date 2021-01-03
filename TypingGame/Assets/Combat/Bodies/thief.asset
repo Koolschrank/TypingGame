@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdb9e8ff006f91f4ea6427c58cbc1007, type: 3}
+  m_Name: thief
+  m_EditorClassIdentifier: 
+  _name: Thief
+  sprite: {fileID: 4885709214463256040, guid: 03a31101566f544428d0c4ed51490a35, type: 3}
+  animaton: {fileID: 22100000, guid: fa7e8e53bb09bfa4182d9a57df621068, type: 2}
+  strenght: 4
+  intellect: 5
+  defence: 3
+  resistance: 3
+  abilities:
+  - {fileID: 11400000, guid: fc0294cf52e04e84bb611a4fa2c9555c, type: 2}
+  - {fileID: 11400000, guid: 03126597618307f4dad5fe5cf8dae8de, type: 2}
+  - {fileID: 11400000, guid: 952ab7a2d55eaa94ebb8949535fb11d9, type: 2}
+  fire: 0
+  ice: 0
+  thunder: 0
+  passiveSkills: 0000000005000000
+  info: Items are stronger if executed with no typos

@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e088ed5ef6084bf45b2e62b1060bb0e5, type: 3}
+  m_Name: Shild
+  m_EditorClassIdentifier: 
+  _name: Shild
+  _words: the of and to a in that I was he his with is it for as had you not be on
+    at by her which have or from this but all him she were they my are so me their
+    an one de we who would said been no He will them when if there more out And It
+    any up into your has do what could but our than other some very man upon about
+    its only time may la like little then now should can made did such A great In
+    must these two before see us
+  _word_count: 3
+  time_per_character: 1
+  _cost_typ: 0
+  _cost: 0
+  power: 0
+  stat_strenght: 1
+  _typ: 3
+  _element: 0
+  _target: 2
+  _animation: 0
+  _sprite_object: {fileID: 0}
+  Impact_object: {fileID: 0}
+  impact_size: 1
+  _info: Raises defence by 5 for 1 turn
+  effect_array:
+  - effect: 2
+    value1: 2
+    value2: 0
+  menuIcon: {fileID: 21300000, guid: d73e4641c3730dd44840290b7ed7cce7, type: 3}
+  icon_size: 2
+  spriteRotatet: 1

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e088ed5ef6084bf45b2e62b1060bb0e5, type: 3}
+  m_Name: MagicRocket
+  m_EditorClassIdentifier: 
+  _name: MagicRocket
+  _words: agenda ambiguous bibulous debilitate introspection futile mundane naive
+    obvious succumb deus ex machina
+  _word_count: 5
+  time_per_character: 1
+  _cost_typ: 2
+  _cost: 10
+  power: 30
+  stat_strenght: 2
+  _typ: 1
+  _element: 0
+  _target: 0
+  _animation: 0
+  _sprite_object: {fileID: 0}
+  Impact_object: {fileID: 0}
+  impact_size: 1
+  _info: 
+  effect_array: []
+  menuIcon: {fileID: 21300000, guid: 6eca105d8dab5cd4597947e25b2417c8, type: 3}
+  spriteRotatet: 0

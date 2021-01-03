@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdb9e8ff006f91f4ea6427c58cbc1007, type: 3}
+  m_Name: GreenDino
+  m_EditorClassIdentifier: 
+  _name: Dino
+  sprite: {fileID: -6175481005366591670, guid: 03a31101566f544428d0c4ed51490a35, type: 3}
+  animaton: {fileID: 22100000, guid: 4274fb95eab712140b5d1e2c28de588a, type: 2}
+  strenght: 5
+  intellect: 0
+  defence: 5
+  resistance: 2
+  abilities:
+  - {fileID: 11400000, guid: c1c4e55161197164293f9cf296a652f2, type: 2}
+  - {fileID: 11400000, guid: 814fd9574db398d448a3ce2521be3453, type: 2}
+  - {fileID: 11400000, guid: 83717e2bf3db0ee48aef4e44e26c8081, type: 2}
+  - {fileID: 11400000, guid: fd8f235f217829343aaf6f6f425de16d, type: 2}
+  fire: 1
+  ice: 1
+  thunder: 0
+  passiveSkills: 03000000
+  info: double strenght wile on 50% health or lower. Can't cast magic

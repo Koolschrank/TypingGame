@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e088ed5ef6084bf45b2e62b1060bb0e5, type: 3}
+  m_Name: OneShotBlade
+  m_EditorClassIdentifier: 
+  _name: Espada ropera
+  _words: hola amor felicidad gato perro si gracias adios un dos quien en la los
+    las antes bien gustar poder como donde pero muy yo me grande usted salir otro
+    hasta mal muy llevar leer sin sobre trabajar nosotros adios hombre comer
+  _word_count: 5
+  time_per_character: 1
+  _cost_typ: 1
+  _cost: 4
+  power: 3
+  stat_strenght: 1
+  _typ: 0
+  _element: 0
+  _target: 0
+  _animation: 0
+  _sprite_object: {fileID: 5983543275497993644, guid: 992c5dbc9eda0214dbbaf9c9df568df3, type: 3}
+  Impact_object: {fileID: 7810009366253378566, guid: dfe4935324292894b89c7d8b60e9458e, type: 3}
+  impact_size: 1
+  _info: Doubles damage if the enemy has full health
+  effect_array:
+  - effect: 4
+    value1: 2
+    value2: 0
+  menuIcon: {fileID: -6220199512201164930, guid: 03a31101566f544428d0c4ed51490a35, type: 3}
+  icon_size: 2
+  spriteRotatet: 1
