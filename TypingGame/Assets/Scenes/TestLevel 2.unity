@@ -29263,7 +29263,6 @@ MonoBehaviour:
     abilities:
     - {fileID: 11400000, guid: 8ee9ac10dd82a7045ab9807b455a2c52, type: 2}
     - {fileID: 11400000, guid: 9914b90543aaae84496907cc89bfc947, type: 2}
-    - {fileID: 11400000, guid: 2d79795fdff558849a45bfe4d7dfd9ed, type: 2}
   - _name: Skills
     slots: 8
     abilities: []
