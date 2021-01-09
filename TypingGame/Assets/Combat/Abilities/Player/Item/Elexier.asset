@@ -21,6 +21,7 @@ MonoBehaviour:
     must these two before see us
   _word_count: 3
   time_per_character: 1
+  gimmick: 0
   _cost_typ: 3
   _cost: 0
   power: 10
@@ -32,7 +33,9 @@ MonoBehaviour:
   _sprite_object: {fileID: 0}
   Impact_object: {fileID: 0}
   impact_size: 1
-  _info: text to read, yay
+  castSound: {fileID: 8300000, guid: 1e1de190bbda0f740a23d5d94d174327, type: 3}
+  soundVolume: 1
+  _info: Fills HP
   effect_array: []
   menuIcon: {fileID: 21300000, guid: d34f0e0594da2104d96caed0d04e0b03, type: 3}
   icon_size: 2

@@ -33,6 +33,8 @@ MonoBehaviour:
   _sprite_object: {fileID: 0}
   Impact_object: {fileID: 0}
   impact_size: 1
+  castSound: {fileID: 8300000, guid: bf36e7f2c31552e418b68653517a2e39, type: 3}
+  soundVolume: 1
   _info: Increases strenght by 8 for 1 turn
   effect_array:
   - effect: 2

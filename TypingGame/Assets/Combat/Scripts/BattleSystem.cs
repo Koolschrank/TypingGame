@@ -120,8 +120,12 @@ public class BattleSystem : MonoBehaviour
         {
             if (_action._ability.Impact_object)
             {
-                GameObject _impact = Instantiate(_action._ability.Impact_object, _action._target.transform.position, transform.rotation) as GameObject;
-                _impact.transform.localScale = new Vector3(_action._ability.impact_size, _action._ability.impact_size, _action._ability.impact_size);
+                foreach(GameObject target in _action._target)
+                {
+                    GameObject _impact = Instantiate(_action._ability.Impact_object, target.transform.position, transform.rotation) as GameObject;
+                    _impact.transform.localScale = new Vector3(_action._ability.impact_size, _action._ability.impact_size, _action._ability.impact_size);
+                }
+                
             }
         }
         theatre.Ability_Animation(player.gameObject, _current_ability);
@@ -151,10 +155,15 @@ public class BattleSystem : MonoBehaviour
     {
         foreach (Action _action in current_actions)
         {
+
             if (_action._ability.Impact_object)
             {
-                GameObject _impact = Instantiate(_action._ability.Impact_object, _action._target.transform.position, transform.rotation) as GameObject;
-                _impact.transform.localScale = new Vector3(_action._ability.impact_size, _action._ability.impact_size, _action._ability.impact_size);
+                foreach (GameObject target in _action._target)
+                {
+                    GameObject _impact = Instantiate(_action._ability.Impact_object, target.transform.position, transform.rotation) as GameObject;
+                    _impact.transform.localScale = new Vector3(_action._ability.impact_size, _action._ability.impact_size, _action._ability.impact_size);
+                }
+                
             }
         }
         theatre.Ability_Animation(selected_enemy.gameObject, _current_ability);
@@ -231,6 +240,10 @@ public class BattleSystem : MonoBehaviour
                 break;
             case ability_typ.magical:
                 power = PlayerPowerCalculation(ability.power, (int)(player.intellect * ability.stat_strenght), score);
+                if (player.CheckForPassiv(passiveSkill.big_brain) && ability._typ == ability_typ.magical)
+                {
+                    power = (int)(power* 1.30f);
+                }
                 break;
             case ability_typ.heal:
                 power = PlayerPowerCalculation(ability.power, (int)(player.intellect * ability.stat_strenght), score);
@@ -314,20 +327,32 @@ public class BattleSystem : MonoBehaviour
 
     public void Enemy_Acts(Ability _ability)
     {
-        if(_ability.Get_enemy_target().GetComponent<PlayerStats>())
+        bool toPlayer = false;
+        foreach(GameObject target in _ability.Get_enemy_target())
         {
-            FindObjectOfType<BattleTyper>().Start_typing(_ability._words, _ability._word_count, _ability.time_per_character, false, _ability.gimmick);
+            if (target.GetComponent<PlayerStats>())
+            {
+                FindObjectOfType<BattleTyper>().Start_typing(_ability._words, _ability._word_count, _ability.time_per_character, false, _ability.gimmick);
+                toPlayer = true;
+            }
+            else
+            {
+
+                Enemy_move(1, true, _ability); // 1 and true don't matter
+                Next_turn();
+                return;
+            }
         }
-        else
-        {
-            
-            Enemy_move(1, true, _ability); // 1 and true don't matter
-            Next_turn();
-        }
+
+        
     }
 
     public void Enemy_move(float score, bool typos_made, Ability ability)
     {
+        if (ability.castSound != null)
+        {
+            FindObjectOfType<AudioBox>().PlaySound(ability.castSound, ability.soundVolume);
+        }
         int power = 0;
         switch (ability._typ)
         {
@@ -353,7 +378,7 @@ public class BattleSystem : MonoBehaviour
         }
 
 
-        Save_Action(power, typos_made, ability, ability.Get_enemy_target(), score);
+        Save_Action(power, typos_made, ability, score);
         //switch (ability._target)
         //{
         //    case Target.one:
@@ -387,17 +412,28 @@ public class BattleSystem : MonoBehaviour
         public int _power;
         public bool _typos_made;
         public Ability _ability;
-        public GameObject _target;
+        public List<GameObject> _target = new List<GameObject>();
         public float _score;
     }
 
-    public void Save_Action(int power,bool typos_made,Ability ability, GameObject target, float score)
+    public void Save_Action(int power,bool typos_made,Ability ability, float score)
     {
         Action new_action = new Action();
         new_action._power = power;
         new_action._typos_made = typos_made;
         new_action._ability = ability;
-        new_action._target = target;
+        new_action._target = ability.Get_enemy_target();
+        new_action._score = score;
+        current_actions.Add(new_action);
+    }
+
+    public void Save_Action(int power, bool typos_made, Ability ability, GameObject target, float score)
+    {
+        Action new_action = new Action();
+        new_action._power = power;
+        new_action._typos_made = typos_made;
+        new_action._ability = ability;
+        new_action._target.Add(target);
         new_action._score = score;
         current_actions.Add(new_action);
     }
@@ -406,13 +442,14 @@ public class BattleSystem : MonoBehaviour
     {
         foreach (Action _action in current_actions)
         {
-            if (_action._target.GetComponent<PlayerStats>())
+            foreach(GameObject target in _action._target)
+            if (target.GetComponent<PlayerStats>())
             {
-                _action._target.GetComponent<PlayerStats>().Apply_ability(_action._power, _action._typos_made, _action._ability,_action._score);
+                target.GetComponent<PlayerStats>().Apply_ability(_action._power, _action._typos_made, _action._ability,_action._score);
             }
             else
             {
-                _action._target.GetComponent<EnemyStats>().Apply_ability(_action._power, _action._typos_made, _action._ability);
+                target.GetComponent<EnemyStats>().Apply_ability(_action._power, _action._typos_made, _action._ability);
             }
         }
         current_actions.Clear();
@@ -592,6 +629,22 @@ public class BattleSystem : MonoBehaviour
     {
         player.RemoveAllBuffs();
         StartCoroutine(GoBackToMap());
+    }
+
+    public void ShowEnemyStats()
+    {
+        for(int i =0; i < enemies.Count; i++)
+        {
+            enemies[i].UI.GetComponentInChildren<EnemyInfo>().SetInfo(enemies[i]);
+        }
+    }
+
+    public void RemoveInfo()
+    {
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            enemies[i].UI.GetComponentInChildren<EnemyInfo>().GoBack();
+        }
     }
 
     IEnumerator GoBackToMap()

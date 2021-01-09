@@ -25,8 +25,9 @@ MonoBehaviour:
     burst bonus brick
   _word_count: 5
   time_per_character: 1
+  gimmick: 0
   _cost_typ: 1
-  _cost: 3
+  _cost: 4
   power: 8
   stat_strenght: 1
   _typ: 0

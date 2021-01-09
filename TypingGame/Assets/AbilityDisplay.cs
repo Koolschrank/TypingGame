@@ -162,10 +162,18 @@ public class AbilityDisplay : MonoBehaviour
         switch (_ability._cost_typ)
         {
             case Cost.hp:
-                _cost.text = _ability._cost.ToString() + "HP";
+                _cost.text = ((int)(_ability._cost * FindObjectOfType<PlayerStats>().hp_cost_percent)).ToString() + "HP";
                 break;
             case Cost.mp:
-                _cost.text = _ability._cost.ToString() + "MP";
+                if(FindObjectOfType<PlayerStats>().CheckForPassiv(passiveSkill.big_brain) && _ability._typ == ability_typ.magical)
+                {
+                    _cost.text = ((int)(_ability._cost * 1.50f)).ToString() + "MP";
+                }
+                else
+                {
+                    _cost.text = _ability._cost.ToString() + "MP";
+                }
+               
                 break;
             case Cost.nothing:
             case Cost.consumable:
@@ -173,4 +181,5 @@ public class AbilityDisplay : MonoBehaviour
                 break;
         }
     }
+
 }

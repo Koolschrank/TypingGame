@@ -14,10 +14,13 @@ public class AbilitySelect : MonoBehaviour
     BattleSystem battleSystem;
     PlayerStats player;
     Player_universal.Ability_Typ current_folder;
+    AudioBox AB;
     Ability _ability;
     public Slider hp, mp;
     public bool fastMode;
     public Text hp_text, mp_text;
+    public AudioClip selectSound, selectEndSound, goBackSound;
+    public float soundVolume =0.7f;
     bool activated = false; // later to false
     bool selectAbility = false;
     bool inBodySelect;
@@ -27,6 +30,7 @@ public class AbilitySelect : MonoBehaviour
     {
         battleSystem = FindObjectOfType<BattleSystem>();
         player = FindObjectOfType<PlayerStats>();
+        AB = FindObjectOfType<AudioBox>();
         Set_UI();
         input.onValueChange.AddListener(delegate { ValueChangeCheck(input.text); });
         UpdateSlider();
@@ -217,17 +221,22 @@ public class AbilitySelect : MonoBehaviour
             }
             
         }
-        if (player.can_swich_body || player.playerBodies.Count >1)
+        if (player.can_swich_body && player.playerBodies.Count >1)
         {
-            _string += "Shift";
+            _string += "Shift" + "\n";
             _numbers += numbers.ToString() + "\n";
+            numbers++;
         }
+        _string += "Info" + "\n";
+        _numbers += numbers.ToString() + "\n";
+        numbers++;
 
         AUI.Set_Menu(_string, _numbers);
     }
 
     public void Show_Abilities(Player_universal.Ability_Typ folder)
     {
+        battleSystem.RemoveInfo();
         AUI.Set_Abilities(folder);
         selectAbility = true;
         return;
@@ -275,6 +284,7 @@ public class AbilitySelect : MonoBehaviour
 
     public void OpenShift()
     {
+        battleSystem.RemoveInfo();
         AUI.Set_body_list(player.playerBodies);
         inBodySelect = true;
         return;
@@ -300,6 +310,7 @@ public class AbilitySelect : MonoBehaviour
             ASUI.SetVisible(false);
             activated = true;
             input.text = "";
+            FindObjectOfType<BattleTyper>().SetAutoTimer();
         }
         
     }
@@ -330,53 +341,108 @@ public class AbilitySelect : MonoBehaviour
     {
         if (Input.GetKeyDown("1") && Ability_typs[0] != null)
         {
+            AB.PlaySound(selectSound, soundVolume);
             Show_Abilities(Ability_typs[0]);
             current_folder = Ability_typs[0];
         }
         if (Input.GetKeyDown("2") )
         {
-            if (1 == Ability_typs.Count && player.can_swich_body && player.playerBodies.Count>1)
+            if (1 == Ability_typs.Count)
             {
-                OpenShift();
+                if (player.can_swich_body && player.playerBodies.Count > 1)
+                {
+                    AB.PlaySound(selectSound, soundVolume);
+                    OpenShift();
+                }
+                else
+                {
+                    battleSystem.ShowEnemyStats();
+                }
+            }
+            else if(0 == Ability_typs.Count && (player.can_swich_body && player.playerBodies.Count > 1))
+            {
+                battleSystem.ShowEnemyStats();
             }
             else if (Ability_typs[1] != null)
             {
+                AB.PlaySound(selectSound, soundVolume);
                 Show_Abilities(Ability_typs[1]);
                 current_folder = Ability_typs[1];
             }
         }
         if (Input.GetKeyDown("3") )
         {
-            if (2 == Ability_typs.Count && player.can_swich_body && player.playerBodies.Count > 1)
+            if (2 == Ability_typs.Count)
             {
-                OpenShift();
+                if (player.can_swich_body && player.playerBodies.Count > 1)
+                {
+                    AB.PlaySound(selectSound, soundVolume);
+                    OpenShift();
+                }
+                else
+                {
+                    battleSystem.ShowEnemyStats();
+                }
             }
+            else if (1 == Ability_typs.Count && (player.can_swich_body && player.playerBodies.Count > 1))
+            {
+                battleSystem.ShowEnemyStats();
+            }
+
             else if (Ability_typs[2] != null)
             {
+                AB.PlaySound(selectSound, soundVolume);
                 Show_Abilities(Ability_typs[2]);
                 current_folder = Ability_typs[2];
             }
         }
         if (Input.GetKeyDown("4") )
         {
-            if (3 == Ability_typs.Count && player.can_swich_body && player.playerBodies.Count > 1)
+            if (3 == Ability_typs.Count)
             {
-                OpenShift();
+                if (player.can_swich_body && player.playerBodies.Count > 1)
+                {
+                    AB.PlaySound(selectSound, soundVolume);
+                    OpenShift();
+                }
+                else
+                {
+                    battleSystem.ShowEnemyStats();
+                }
+            }
+            else if (2 == Ability_typs.Count && (player.can_swich_body && player.playerBodies.Count > 1))
+            {
+                battleSystem.ShowEnemyStats();
             }
             else if (player.Ability_typs[3] != null)
             {
+                AB.PlaySound(selectSound, soundVolume);
                 Show_Abilities(Ability_typs[3]);
                 current_folder = Ability_typs[3];
             }
         }
         if (Input.GetKeyDown("5") )
         {
-            if (4 == Ability_typs.Count && player.can_swich_body && player.playerBodies.Count > 1)
+            if (4 == Ability_typs.Count)
             {
-                OpenShift();
+                if (player.can_swich_body && player.playerBodies.Count > 1)
+                {
+                    AB.PlaySound(selectSound, soundVolume);
+                    OpenShift();
+                }
+                else
+                {
+                    battleSystem.ShowEnemyStats();
+                }
+
+            }
+            else if (3 == Ability_typs.Count && (player.can_swich_body && player.playerBodies.Count > 1))
+            {
+                battleSystem.ShowEnemyStats();
             }
             else if (Ability_typs[4] != null)
             {
+                AB.PlaySound(selectSound, soundVolume);
                 Show_Abilities(Ability_typs[4]);
                 current_folder = Ability_typs[4];
             }
@@ -384,12 +450,25 @@ public class AbilitySelect : MonoBehaviour
         }
         if (Input.GetKeyDown("6") )
         {
-            if (5 == Ability_typs.Count && player.can_swich_body && player.playerBodies.Count > 1)
+            if (5 == Ability_typs.Count)
             {
-                OpenShift();
+                if (player.can_swich_body && player.playerBodies.Count > 1)
+                {
+                    AB.PlaySound(selectSound, soundVolume);
+                    OpenShift();
+                }
+                else
+                {
+                    battleSystem.ShowEnemyStats();
+                }
+            }
+            else if (4 == Ability_typs.Count && (player.can_swich_body && player.playerBodies.Count > 1))
+            {
+                battleSystem.ShowEnemyStats();
             }
             else if (Ability_typs[5] != null)
             {
+                AB.PlaySound(selectSound, soundVolume);
                 Show_Abilities(Ability_typs[5]);
                 current_folder = Ability_typs[5];
             }
@@ -400,54 +479,63 @@ public class AbilitySelect : MonoBehaviour
     {
         if (Input.GetKeyDown("1") && current_folder.abilities.Count >0)
         {
+            AB.PlaySound(selectSound, soundVolume);
             _ability = current_folder.abilities[0];
             SetAbilityStats();
             create_target_UI(battleSystem.enemies, _ability);
         }
         if (Input.GetKeyDown("2") && current_folder.abilities.Count > 1)
         {
+            AB.PlaySound(selectSound, soundVolume);
             _ability = current_folder.abilities[1];
             SetAbilityStats();
             create_target_UI(battleSystem.enemies, _ability);
         }
         if (Input.GetKeyDown("3") && current_folder.abilities.Count > 2)
         {
+            AB.PlaySound(selectSound, soundVolume);
             _ability = current_folder.abilities[2];
             SetAbilityStats();
             create_target_UI(battleSystem.enemies, _ability);
         }
         if (Input.GetKeyDown("4") && current_folder.abilities.Count > 3)
         {
+            AB.PlaySound(selectSound, soundVolume);
             _ability = current_folder.abilities[3];
             SetAbilityStats();
             create_target_UI(battleSystem.enemies, _ability);
         }
         if (Input.GetKeyDown("5") && current_folder.abilities.Count > 4)
         {
+            AB.PlaySound(selectSound, soundVolume);
             _ability = current_folder.abilities[4];
             SetAbilityStats();
             create_target_UI(battleSystem.enemies, _ability);
         }
         if (Input.GetKeyDown("6") && current_folder.abilities.Count > 5)
         {
+            AB.PlaySound(selectSound, soundVolume);
             _ability = current_folder.abilities[5];
             SetAbilityStats();
             create_target_UI(battleSystem.enemies, _ability);
         }
         if (Input.GetKeyDown("7") && current_folder.abilities.Count > 6)
         {
+            AB.PlaySound(selectSound, soundVolume);
             _ability = current_folder.abilities[6];
             SetAbilityStats();
             create_target_UI(battleSystem.enemies, _ability);
         }
         if (Input.GetKeyDown("8") && current_folder.abilities.Count > 7)
         {
+            AB.PlaySound(selectSound, soundVolume);
             _ability = current_folder.abilities[7];
             SetAbilityStats();
             create_target_UI(battleSystem.enemies, _ability);
         }
         if (Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Escape))
         {
+            AB.PlaySound(goBackSound, soundVolume);
             AUI.Set_abilities_off();
             current_folder = null;
         }
@@ -464,38 +552,47 @@ public class AbilitySelect : MonoBehaviour
     {
         if (Input.GetKeyDown("1") && player.playerBodies.Count>0)
         {
+            AB.PlaySound(selectSound, soundVolume);
             SelectBody(0);
         }
         if (Input.GetKeyDown("2") && player.playerBodies.Count > 1)
         {
+            AB.PlaySound(selectSound, soundVolume);
             SelectBody(1);
         }
         if (Input.GetKeyDown("3") && player.playerBodies.Count > 2)
         {
+            AB.PlaySound(selectSound, soundVolume);
             SelectBody(2);
         }
         if (Input.GetKeyDown("4") && player.playerBodies.Count > 3)
         {
+            AB.PlaySound(selectSound, soundVolume);
             SelectBody(3);
         }
         if (Input.GetKeyDown("5") && player.playerBodies.Count > 4)
         {
+            AB.PlaySound(selectSound, soundVolume);
             SelectBody(4);
         }
         if (Input.GetKeyDown("6") && player.playerBodies.Count > 5)
         {
+            AB.PlaySound(selectSound, soundVolume);
             SelectBody(5);
         }
         if (Input.GetKeyDown("7") && player.playerBodies.Count > 6)
         {
+            AB.PlaySound(selectSound, soundVolume);
             SelectBody(6);
         }
         if (Input.GetKeyDown("8") && player.playerBodies.Count > 7)
         {
+            AB.PlaySound(selectSound, soundVolume);
             SelectBody(7);
         }
         if (Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Escape))
         {
+            AB.PlaySound(goBackSound, soundVolume);
             AUI.Set_abilities_off();
             current_folder = null;
             inBodySelect = false;
@@ -517,6 +614,7 @@ public class AbilitySelect : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Escape))
         {
+            AB.PlaySound(goBackSound, soundVolume);
             AUI.transform.localScale = UIScale;
             ASUI.SetVisible(false);
             AUI.Set_Enemy_Menu_off();
@@ -533,12 +631,9 @@ public class AbilitySelect : MonoBehaviour
                 if (Input.GetKeyDown("1") )
                 {
 
+                    AB.PlaySound(selectSound, soundVolume);
                     ActivateBattleTyper(_ability);
                     ResetUI();
-                }
-                if (Input.GetKeyDown("2"))
-                {
-                    SetInfo();
                 }
                 break;
             case Target.one:
@@ -546,7 +641,7 @@ public class AbilitySelect : MonoBehaviour
                 {
                     if(battleSystem.enemies[0] != null)
                     {
-                        
+                        AB.PlaySound(selectSound, soundVolume);
                         battleSystem.selected_enemy = battleSystem.enemies[0];
                         ActivateBattleTyper(_ability);
                         ResetUI();
@@ -556,7 +651,7 @@ public class AbilitySelect : MonoBehaviour
                 {
                     if (battleSystem.enemies[1] != null)
                     {
-                        
+                        AB.PlaySound(selectSound, soundVolume);
                         battleSystem.selected_enemy = battleSystem.enemies[1];
                         ActivateBattleTyper(_ability);
                         ResetUI();
@@ -566,7 +661,7 @@ public class AbilitySelect : MonoBehaviour
                 {
                     if (battleSystem.enemies[2] != null)
                     {
-                        
+                        AB.PlaySound(selectSound, soundVolume);
                         battleSystem.selected_enemy = battleSystem.enemies[2];
                         ActivateBattleTyper(_ability);
                         ResetUI();
@@ -576,7 +671,7 @@ public class AbilitySelect : MonoBehaviour
                 {
                     if (battleSystem.enemies[3] != null)
                     {
-                        
+                        AB.PlaySound(selectSound, soundVolume);
                         battleSystem.selected_enemy = battleSystem.enemies[3];
                         ActivateBattleTyper(_ability);
                         ResetUI();
@@ -586,7 +681,7 @@ public class AbilitySelect : MonoBehaviour
             case Target.self:
                 if (Input.GetKeyDown("1"))
                 {
-                    
+                    AB.PlaySound(selectSound, soundVolume);
                     ActivateBattleTyper(_ability);
                     ResetUI();
                 }
@@ -596,5 +691,10 @@ public class AbilitySelect : MonoBehaviour
         }
 
         
+    }
+
+    public bool IsActive()
+    {
+        return activated;
     }
 }

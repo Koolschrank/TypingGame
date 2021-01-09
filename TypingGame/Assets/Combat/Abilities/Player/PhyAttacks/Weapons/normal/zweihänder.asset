@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e088ed5ef6084bf45b2e62b1060bb0e5, type: 3}
   m_Name: "zweih\xE4nder"
   m_EditorClassIdentifier: 
-  _name: "zweih\xE4nder"
+  _name: zweihander
   _words: 'Bratwurst Emmentaler schadenfreude zeitgeist doppelganger gesundheit
 
     kindergarten
     Oktoberfest Zeppelin'
-  _word_count: 3
-  time_per_character: 1
+  _word_count: 2
+  time_per_character: 1.1
+  gimmick: 0
   _cost_typ: 1
-  _cost: 4
-  power: 5
+  _cost: 8
+  power: 8
   stat_strenght: 1
   _typ: 0
   _element: 0
@@ -30,6 +31,8 @@ MonoBehaviour:
   _sprite_object: {fileID: 5983543275497993644, guid: 915129de9b6449b40b2749094892fa93, type: 3}
   Impact_object: {fileID: 7810009366253378566, guid: dfe4935324292894b89c7d8b60e9458e, type: 3}
   impact_size: 1
+  castSound: {fileID: 0}
+  soundVolume: 1
   _info: lowers the defence of the target
   effect_array:
   - effect: 2

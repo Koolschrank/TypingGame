@@ -115,3 +115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ac0aeb3727596d408bd2fb48c2fc759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originalScale: {x: 0, y: 0, z: 0}
+  audioEffect: {fileID: 8300000, guid: fa16546877560ce449c263e292e2e38c, type: 3}
+  volume: 1

@@ -9,4 +9,5 @@ public class PublicVaribles : ScriptableObject
     public GameObject StatText, weakText;
     public Color downColor;
     public ParticleSystem bodySwapPartical;
+    public AudioClip pickUpSound;
 }

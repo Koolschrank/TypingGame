@@ -74,6 +74,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 270dc50245c781f45a55ebcd4df96db2, type: 2}
   - {fileID: 11400000, guid: 058239fbd234df4428dfc95d4d2da793, type: 2}
   - {fileID: 11400000, guid: 3a07e297b1c08124bac9caa6ba60ac44, type: 2}
+  - {fileID: 11400000, guid: fc2b29a18908d0b43bd9834a0895a0f0, type: 2}
+  - {fileID: 11400000, guid: 89eed4dd368eba4498b8244e23def3c0, type: 2}
+  - {fileID: 11400000, guid: 9fc7d914be00e8142b1ceaa8fd269027, type: 2}
+  - {fileID: 11400000, guid: cba367f93276e5544bc560a405accae5, type: 2}
   BuffList:
   - Name: STR UP
     stats:
@@ -120,11 +124,11 @@ MonoBehaviour:
     - stat: 0
       power: 8
     turnsLeft: 1
-  - Name: Mind Charge
+  - Name: Def UP
     stats:
-    - stat: 1
-      power: 6
-    turnsLeft: 1
+    - stat: 2
+      power: 5
+    turnsLeft: 3
   - Name: Mind Charge
     stats:
     - stat: 1

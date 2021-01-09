@@ -9,17 +9,22 @@ public class BackPackControle : MonoBehaviour
     public transitionTiles[] transitionTiles, transitionAbility;
     public Image backgroundLeft, backgroundRight;
     public Color W1, W2, M1, M2, I1, I2, B1, B2, lv1,lv2;
-    public Text inventoryText;
+    public Text inventoryText, BackpackText;
     public float changeCoolDown;
     BackpackMenu BM;
     LevelUPSystem LUS;
+    statsPage SP;
     state currentState = state.closed;
     bool inMenu, inDelay;
+    public AudioClip openMenu, closeMenu, selectOption, useItemSound;
+    AudioBox AB;
 
     private void Start()
     {
         BM = GetComponent<BackpackMenu>();
         LUS = GetComponentInChildren<LevelUPSystem>();
+        SP = FindObjectOfType<statsPage>();
+        AB = FindObjectOfType<AudioBox>();
     }
 
     private void Update()
@@ -37,6 +42,7 @@ public class BackPackControle : MonoBehaviour
         {
             if (!inDelay && SceneManager.GetActiveScene().name != "Battle" && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown((KeyCode.Backspace))))
             {
+                AB.PlaySound(openMenu, 1);
                 StartCoroutine(StartDelay());
                 OpenTransition();
                 FindObjectOfType<SceneTransitioner>().SetMovement(false);
@@ -46,8 +52,10 @@ public class BackPackControle : MonoBehaviour
         }
         else if (currentState == state.opend)
         {
+            
             if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown((KeyCode.Backspace))))
             {
+                AB.PlaySound(closeMenu, 1);
                 StartCoroutine(StartDelay());
                 CloseTransition();
                 FindObjectOfType<SceneTransitioner>().SetMovement(true);
@@ -150,11 +158,13 @@ public class BackPackControle : MonoBehaviour
 
         if(Input.GetKeyDown("1"))
         {
-
+            AB.PlaySound(openMenu, 1);
             inventoryText.text = "Weapons";
+            BackpackText.text = "Backpack";
             backgroundLeft.color = W1;
             backgroundRight.color = W2;
             OpenSubMenu(transitionAbility, state.inWeapon);
+            SP.SetVisible(false);
             LUS.SetVisible(false);
             BM.SetVisible(true);
             BM.CreateLists(FindObjectOfType<PlayerStats>().Ability_typs[0], FindObjectOfType<Backpack>().abilities[0]);
@@ -162,10 +172,13 @@ public class BackPackControle : MonoBehaviour
         }
         if (Input.GetKeyDown("2"))
         {
+            AB.PlaySound(openMenu, 1);
             inventoryText.text = "Magic";
+            BackpackText.text = "Backpack";
             backgroundLeft.color = M1;
             backgroundRight.color = M2;
             OpenSubMenu(transitionAbility, state.inMagic);
+            SP.SetVisible(false);
             LUS.SetVisible(false);
             BM.SetVisible(true);
             BM.CreateLists(FindObjectOfType<PlayerStats>().Ability_typs[1], FindObjectOfType<Backpack>().abilities[1]);
@@ -173,10 +186,13 @@ public class BackPackControle : MonoBehaviour
         }
         if (Input.GetKeyDown("3"))
         {
+            AB.PlaySound(openMenu, 1);
             inventoryText.text = "Items";
+            BackpackText.text = "Backpack";
             backgroundLeft.color = I1;
             backgroundRight.color = I2;
             OpenSubMenu(transitionAbility, state.inItem);
+            SP.SetVisible(false);
             LUS.SetVisible(false);
             BM.SetVisible(true);
             BM.CreateLists(FindObjectOfType<PlayerStats>().Ability_typs[3], FindObjectOfType<Backpack>().abilities[3]);
@@ -184,11 +200,13 @@ public class BackPackControle : MonoBehaviour
         }
         if (Input.GetKeyDown("4"))
         {
-            Debug.Log("this happend for some reasoon");
+            AB.PlaySound(openMenu, 1);
             inventoryText.text = "Bodies";
+            BackpackText.text = "Backpack";
             backgroundLeft.color = B1;
             backgroundRight.color = B2;
             OpenSubMenu(transitionAbility, state.inBody);
+            SP.SetVisible(false);
             LUS.SetVisible(false);
             BM.SetVisible(true);
             BM.CreateBodyLists(FindObjectOfType<PlayerStats>().playerBodies, FindObjectOfType<Backpack>().playerBodies);
@@ -196,11 +214,13 @@ public class BackPackControle : MonoBehaviour
         }
         if (Input.GetKeyDown("5"))
         {
+            AB.PlaySound(openMenu, 1);
             inventoryText.text = "Level up";
+            BackpackText.text = "Stats";
             backgroundLeft.color = lv1;
             backgroundRight.color = lv2;
             OpenSubMenu(transitionAbility, state.inLevelUp);
-            
+            SP.SetVisible(true);
             LUS.SetVisible(true);
             LUS.SetActive(true);
             BM.SetVisible(false);
@@ -277,6 +297,7 @@ public class BackPackControle : MonoBehaviour
                 ReturnToMenu(transitionAbility);
                 break;
             case state.inLevelUp:
+                SP.SetVisible(false);
                 LUS.SetActive(false);
                 ReturnToMenu(transitionAbility);
                 break;

@@ -78,7 +78,8 @@ public enum AI_behaviour
     on_self,
     on_low_health_allie,
     on_allie,
-    on_random_allie
+    on_random_allie,
+    on_all_allies
 }
 
 public enum AI_condition
@@ -142,6 +143,9 @@ public enum passiveSkill
     rage, // if below 50% HP, strenght doubles
     Phenix, // revives once per battle(50%hp), cost magic (10)
     itemBoost, // items 50%better when no typo
+    Mp_to_HP, // gain Hp by using MP Skills
+    Undead, // takes damage trough any kind of healing
+    big_brain, // 30% more Magic damage but 40% moreCost
 }
 
 public enum state

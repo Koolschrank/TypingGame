@@ -5,11 +5,10 @@ using UnityEngine.UI;
 
 public class BattleTyper : MonoBehaviour
 {
-    PlayerStats player;
-    BattleSystem system;
+    
     public InputField input, text_field;
     public Text input_text, text_field_text, correct_text;
-    public Slider Time_slider;
+    public Image Time_slider;
     public Color wrong, normal;
     public bool noTyping;
     bool activated, typo_made;
@@ -17,15 +16,34 @@ public class BattleTyper : MonoBehaviour
     float start_time, end_time;
     int _position;
     bool timer_has_started = false;
+    AudioBox AB;
+    PlayerStats player;
+    BattleSystem system;
+    AbilitySelect AS;
+    public AudioClip completeWordAudio, completeTextAudio;
+    public float audioVolume=0.5f, audioVolumeFinish =0.7f;
     [TextArea]
     public string currentText="";
+    public bool autoMode;
+    public float autoModeTime, percentageLeft, autoModeEasing =1.2f;
+    float  currentTime;
 
     private void Start()
     {
         player = FindObjectOfType<PlayerStats>();
         input.onValueChange.AddListener(delegate { ValueChangeCheck(input.text); });
         system = FindObjectOfType<BattleSystem>();
+        AB = FindObjectOfType<AudioBox>();
+        AS = FindObjectOfType<AbilitySelect>();
+        autoMode = FindObjectOfType<Settings>().autoMode;
     }
+
+    public void SetAutoTimer()
+    {
+        currentTime = 0;
+    }
+
+
 
 
     public void Start_typing(string _words, int _count, float _time_per_character, bool _player )
@@ -83,8 +101,19 @@ public class BattleTyper : MonoBehaviour
         start_time = Time.timeSinceLevelLoad;
         if(_player)
         {
-            var time = _text.Length* settings.time_per_character* system.Get_current_speed()* _time_per_character * settings.playerTypeTime;
-            end_time = time;
+            if(autoMode)
+            {
+                var time = _text.Length * settings.time_per_character * system.Get_current_speed() * _time_per_character * settings.playerTypeTime* autoModeEasing;
+                end_time = time;
+            }
+            else
+            {
+                var time = _text.Length * settings.time_per_character * system.Get_current_speed() * _time_per_character * settings.playerTypeTime;
+                end_time = time;
+            }
+
+            
+            
         }
         else
         {
@@ -97,6 +126,11 @@ public class BattleTyper : MonoBehaviour
 
     private void Update()
     {
+        if(autoMode&& !activated  && AS.IsActive())
+        {
+            currentTime += Time.deltaTime;
+        }
+
         UpdateTimer();
 
         if (activated)
@@ -127,15 +161,36 @@ public class BattleTyper : MonoBehaviour
     {
         if (activated)
         {
-            Time_slider.value = 1 - ((Time.timeSinceLevelLoad - start_time) / end_time);
-            if (Time.timeSinceLevelLoad - start_time >= end_time)
+            if(autoMode)
             {
-                EndTyping(0, true);
+                Time_slider.fillAmount = (1- currentTime/ autoModeTime) - ((Time.timeSinceLevelLoad - start_time) / end_time);
+                if ((Time.timeSinceLevelLoad - start_time)  >= end_time - end_time*(currentTime / autoModeTime))
+                {
+                    EndTyping(0, true);
+                }
             }
+            else
+            {
+                Time_slider.fillAmount = 1 - ((Time.timeSinceLevelLoad - start_time) / end_time);
+                if (Time.timeSinceLevelLoad - start_time >= end_time)
+                {
+                    EndTyping(0, true);
+                }
+            }
+            
+            
         }
         else
         {
-            Time_slider.value = 1;
+            if (autoMode)
+            {
+                Time_slider.fillAmount = (1 - currentTime / autoModeTime);
+            }
+            else
+            {
+                Time_slider.fillAmount = 1;
+            }
+            
         }
     }
 
@@ -247,7 +302,12 @@ public class BattleTyper : MonoBehaviour
 
         if (_position >= text_field.text.Length-1)
         {
+            CompleteTextEffect();
             TypingEnd();
+        }
+        else
+        {
+            CompleteWordEffect();
         }
     }
 
@@ -267,6 +327,11 @@ public class BattleTyper : MonoBehaviour
 
     public void EndTyping(float score, bool typos)
     {
+        if(autoMode)
+        {
+            SetAutoTimer();
+        }
+
         if (fromPlayer)
         {
             
@@ -282,6 +347,16 @@ public class BattleTyper : MonoBehaviour
         currentText = "";
         activated = false;
         input.readOnly = true;
+    }
+
+    public void CompleteWordEffect()
+    {
+        AB.PlaySound(completeWordAudio, audioVolume);
+    }
+
+    public void CompleteTextEffect()
+    {
+        AB.PlaySound(completeTextAudio, audioVolumeFinish);
     }
 
 }

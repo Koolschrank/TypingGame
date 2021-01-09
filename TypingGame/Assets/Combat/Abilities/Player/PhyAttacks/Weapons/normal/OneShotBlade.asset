@@ -18,8 +18,9 @@ MonoBehaviour:
     hasta mal muy llevar leer sin sobre trabajar nosotros adios hombre comer
   _word_count: 5
   time_per_character: 1
+  gimmick: 0
   _cost_typ: 1
-  _cost: 4
+  _cost: 6
   power: 3
   stat_strenght: 1
   _typ: 0

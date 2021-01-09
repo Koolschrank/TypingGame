@@ -7,6 +7,7 @@ public class Settings : MonoBehaviour
 
 
     public float WPM,time_per_character, playerTypeTime =2f, enemyTypeTime = 1.5f;
+    public bool autoMode;
 
     public void Start()
     {

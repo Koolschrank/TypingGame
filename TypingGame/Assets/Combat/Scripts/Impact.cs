@@ -5,6 +5,8 @@ using UnityEngine;
 public class Impact : MonoBehaviour
 {
     public Vector3 originalScale;
+    public AudioClip audioEffect;
+    public float volume=1f;
 
     private void Start()
     {
@@ -25,5 +27,10 @@ public class Impact : MonoBehaviour
     {
         FindObjectOfType<BattleSystem>().Initiate_Abilities();
         
+    }
+
+    public void PlayAuduîo()
+    {
+        FindObjectOfType<AudioBox>().PlaySound(audioEffect, volume);
     }
 }

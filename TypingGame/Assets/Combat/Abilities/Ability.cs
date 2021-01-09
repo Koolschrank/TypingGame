@@ -22,11 +22,13 @@ public class Ability : ScriptableObject
     public GameObject _sprite_object;
     public GameObject Impact_object;
     public float impact_size = 1;
+    public AudioClip castSound;
+    public float soundVolume=1f;
     public string _info = "text to read, yay";
     public Effects._effect[] effect_array;
     bool fromPlayer;
     EnemyStats enemy;
-    GameObject enemy_target; // only for BattleAI
+    List<GameObject> enemy_target = new List<GameObject>(); // only for BattleAI
     public Sprite menuIcon;
     public float icon_size = 2;
     public bool spriteRotatet;
@@ -49,12 +51,12 @@ public class Ability : ScriptableObject
         return enemy;
     }
 
-    public void Set_enemy_target(GameObject _target)
+    public void Set_enemy_target(List<GameObject> _target)
     {
         enemy_target = _target;
     }
 
-    public GameObject Get_enemy_target()
+    public List<GameObject> Get_enemy_target()
     {
         return enemy_target;
     }

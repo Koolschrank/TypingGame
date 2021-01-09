@@ -7,7 +7,8 @@ public class PlayerStats : MonoBehaviour
 {
     AbilitySelect UI;
     public int hp_max, mp_max, sp_max, hp, mp, sp, strenght, intellect, defence, resistance;
-    float hp_cost_percent=1f,no_typo_boost = 1.5f;
+    public float hp_cost_percent = 1f;
+    float no_typo_boost = 1.5f;
     bool phenix_used;
     public Player_universal.Ability_Typ[] Ability_typs = null;
     public Effectiveness fire, ice, thunder;
@@ -63,6 +64,7 @@ public class PlayerStats : MonoBehaviour
         mp = _save.mp;
         sp_max = _save.sp_max;
         sp = _save.sp;
+        hp_cost_percent = _save.hp_cost;
         level = _save.level;
         souls = _save.souls;
         level_health = _save.level_h;
@@ -148,6 +150,7 @@ public class PlayerStats : MonoBehaviour
         {
             Ability_typs[3].abilities.Add(ability);
         }
+        Ability_typs[3].slots = Ability_typs[3].abilities.Count;
     }
 
     private void Update()
@@ -235,6 +238,11 @@ public class PlayerStats : MonoBehaviour
 
     public void Use_Ability(float score, bool typos_made)
     {
+        if(currentAbility.castSound != null)
+        {
+            FindObjectOfType<AudioBox>().PlaySound(currentAbility.castSound, currentAbility.soundVolume);
+        }
+
         if (currentBody != startingBody)
         {
             can_swich_body = false;
@@ -242,11 +250,24 @@ public class PlayerStats : MonoBehaviour
         switch (currentAbility._cost_typ)
         {
             case Cost.hp:
-                hp = Mathf.Max(1, hp- Change_Stat(currentAbility._cost, !typos_made));
+                hp = Mathf.Max(1, hp- (int)(Change_Stat(currentAbility._cost, !typos_made) * hp_cost_percent));
                 UI.UpdateSlider();
                 break;
             case Cost.mp:
-                mp -= Change_Stat(currentAbility._cost, !typos_made);
+                if (CheckForPassiv(passiveSkill.big_brain) && currentAbility._typ == ability_typ.magical)
+                {
+                    mp -= (int)(Change_Stat(currentAbility._cost, !typos_made)* 1.50f); //1.50 is hardcoded sadly
+                }
+                else
+                {
+                    mp -= Change_Stat(currentAbility._cost, !typos_made);
+                }
+                
+                if (CheckForPassiv(passiveSkill.Mp_to_HP))
+                {
+                    Heal(currentAbility._cost);
+                }
+                
                 UI.UpdateSlider();
                 break;
             case Cost.consumable:
@@ -428,6 +449,41 @@ public class PlayerStats : MonoBehaviour
         UI.UpdateSlider();
     }
 
+    public void Take_damage(int damage)
+    {
+        if (damage > 0)
+        {
+            GetComponent<CharacterAnimation>().Take_Damage();
+        }
+        showDamageNumber(damage);
+        hp -= Mathf.Max(0, damage);
+        if (hp <= 0)
+        {
+            if (CheckForPassiv(passiveSkill.Phenix) && !phenix_used)
+            {
+                phenix_used = true;
+                mp = Mathf.Max(0, mp - 10);
+                hp = 0;
+                Heal(hp_max / 2);
+            }
+            else
+            {
+                Debug.Log("plea ded");
+                FindObjectOfType<SceneTransitioner>().LoadGameFile();
+                shaker.ShakeCam(shake.extrem);
+            }
+
+
+
+        }
+        else if (damage > 0)
+        {
+            shaker.ShakeCam(shake.medium);
+        }
+
+        UI.UpdateSlider();
+    }
+
     public int CheckElementalEffects(Ability ability, int damage)
     {
         switch(ability._element)
@@ -511,6 +567,11 @@ public class PlayerStats : MonoBehaviour
 
     public void Heal(int heal)
     {
+        if (CheckForPassiv(passiveSkill.Undead))
+        {
+            Take_damage(heal);
+            return;
+        }
         hp = Mathf.Min(hp+heal,hp_max);
         showHealNumber(heal);
         UI.UpdateSlider();

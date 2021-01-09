@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 
 
-[ExecuteAlways]
+[ExecuteInEditMode]
 public class ObjectIndexGiver : MonoBehaviour
 {
     
@@ -15,20 +15,25 @@ public class ObjectIndexGiver : MonoBehaviour
     
     private void Update()
     {
+
         savableObjects = FindObjectsOfType<SaveableObject>();
-
-        foreach(SaveableObject _object in savableObjects)
+#if UNITY_EDITOR
         {
-
-            if (_object.uniqueIdentifier == "" || _object.uniqueIdentifier.ToCharArray().Length <5)
+            foreach (SaveableObject _object in savableObjects)
             {
-                _object.uniqueIdentifier = nextIndex.ToString() + Random.Range(1, 1000000).ToString();
-                nextIndex++;
-                AssetDatabase.Refresh();
-                EditorUtility.SetDirty(_object);
-                AssetDatabase.SaveAssets();
+
+                if (_object.uniqueIdentifier == "" || _object.uniqueIdentifier.ToCharArray().Length < 5)
+                {
+                    _object.uniqueIdentifier = nextIndex.ToString() + Random.Range(1, 1000000).ToString();
+                    nextIndex++;
+                    AssetDatabase.Refresh();
+
+                    EditorUtility.SetDirty(_object);
+                    AssetDatabase.SaveAssets();
+                }
             }
         }
+#endif
     }
 
 

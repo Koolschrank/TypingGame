@@ -22,6 +22,7 @@ public class BodyPickUp : MonoBehaviour
         if(!colected && collision.GetComponent<PlayerStats>())
         {
             
+            FindObjectOfType<Backpack>().playerBodies.Add(body);
             Colected();
         }
     }
@@ -30,7 +31,7 @@ public class BodyPickUp : MonoBehaviour
     {
         GetComponent<Collider2D>().enabled = false;
         colected = true;
-        FindObjectOfType<Backpack>().playerBodies.Add(body);
+        
         GetComponent<SaveableObject>().inGame = false;
         transform.localScale = new Vector3(0, 0, 0);
         var children = GetComponentInChildren<Transform>();

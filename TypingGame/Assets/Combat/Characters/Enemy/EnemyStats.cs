@@ -19,6 +19,7 @@ public class EnemyStats : MonoBehaviour
     List<StatusText> stat_texts = new List<StatusText>();
     public behaviour_AI[] behaviours;
     public ElementalEffectiveness[] elements;
+    public AudioClip defeatSound;
 
     bool defeated, onGround;
     public AbilityFolder AllAbilities;
@@ -162,6 +163,10 @@ public class EnemyStats : MonoBehaviour
 
     public void Defeated(Ability ability_stats)
     {
+        if(defeatSound != null)
+        {
+            FindObjectOfType<AudioBox>().PlaySound(defeatSound,1);
+        }
         FindObjectOfType<PlayerStats>().GainSouls(souls_drop);
         UI.gameObject.active = false;
         defeated = true;
@@ -215,7 +220,7 @@ public class EnemyStats : MonoBehaviour
 
     public void Apply_ability(int power, bool typos_made, Ability ability)
     {
-        foreach(Effects._effect _effect in ability.effect_array)
+        foreach (Effects._effect _effect in ability.effect_array)
         {
             if (_effect.effect == effects.effect_over_time)
             {

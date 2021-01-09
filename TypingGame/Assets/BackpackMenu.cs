@@ -15,11 +15,14 @@ public class BackpackMenu : MonoBehaviour
     public state currenAbilityTyp = state.inWeapon;
     public GameObject cursor;
     public AbilityFolder AllAbilities;
+    public AudioClip openMenu, closeMenu, selectOption, useItemSound;
+    AudioBox AB;
 
 
     void Start()
     {
         ShowPage(1);
+        AB = FindObjectOfType<AudioBox>();
     }
 
     public void SetVisible(bool visible)
@@ -72,6 +75,7 @@ public class BackpackMenu : MonoBehaviour
 
     public void UseItem(SelectedItem item)
     {
+        AB.PlaySound(useItemSound, 1);
         var ability = item.headList.abilities[item.index];
         var player = FindObjectOfType<PlayerStats>();
 
@@ -114,6 +118,7 @@ public class BackpackMenu : MonoBehaviour
 
     public void SelectAction()
     {
+        
         if (Input.GetKeyDown("1"))
         {
             GoToSwap();
@@ -177,6 +182,7 @@ public class BackpackMenu : MonoBehaviour
 
     public void AddAbility()
     {
+
         MoveCursor();
         SelectItem();
     }
@@ -199,7 +205,7 @@ public class BackpackMenu : MonoBehaviour
 
     public void SwapAbility(SelectedItem item1, SelectedItem item2)
     {
-        if(item1.headList.abilities[item1.index] ==null)
+        if (item1.headList.abilities[item1.index] ==null)
         {
             SwapWithEmpty(item1, item2);
             return;
@@ -398,7 +404,7 @@ public class BackpackMenu : MonoBehaviour
 
     public void CloseMenu()
     {
-
+        AB.PlaySound(closeMenu, 1);
         Debug.Log("happuns");
         switch (currenAbilityTyp)
         {
@@ -473,6 +479,7 @@ public class BackpackMenu : MonoBehaviour
 
     public void ItemSelected(SelectedItem cItem,currentSelection CS)
     {
+        AB.PlaySound(selectOption, 1);
         Debug.Log(abilitieLists_u[currentList].displays.Length);
         if(abilitieLists_u[currentList].displays[cItem.index]._number.text =="")
         {

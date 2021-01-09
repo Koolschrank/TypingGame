@@ -9,6 +9,7 @@ public class Loot : MonoBehaviour
     public LootTyp typ = LootTyp.Weapon;
     public bool transfer_to_backpack = true;
     bool open = false;
+    public PublicVaribles PV;
 
 
 
@@ -30,6 +31,11 @@ public class Loot : MonoBehaviour
 
     public void Add_Ability_to_player(PlayerStats player)
     {
+        if(PV !=null)
+        {
+            FindObjectOfType<AudioBox>().PlaySound(PV.pickUpSound, 1);
+        }
+        
         switch(typ)
         {
             case LootTyp.Weapon:

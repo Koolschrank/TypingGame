@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyGroup : MonoBehaviour
 {
+    public int BattleTheme;
     public EnemyAI[] enemies;
     List<GameObject> battle_enemies = new List<GameObject>();
     
@@ -28,6 +29,6 @@ public class EnemyGroup : MonoBehaviour
             }
             
         }
-        FindObjectOfType<SceneTransitioner>().TransitionBattle(battle_enemies);
+        FindObjectOfType<SceneTransitioner>().TransitionBattle(battle_enemies,BattleTheme);
     }
 }

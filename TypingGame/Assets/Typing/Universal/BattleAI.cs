@@ -51,21 +51,29 @@ public static class BattleAI
         return false;
     }
 
-    public static GameObject FindTarget(behaviour_AI behaviour, EnemyStats enemy, List<EnemyStats> all_enemy, PlayerStats player)
+    public static List<GameObject> FindTarget(behaviour_AI behaviour, EnemyStats enemy, List<EnemyStats> all_enemy, PlayerStats player)
     {
         behaviour.currentCoolDown = behaviour.cooldown;
+        List<GameObject> targets= new List<GameObject>(); 
         switch (behaviour.behaviour)
         {
             case AI_behaviour.Attack:
-                return behabiour_Attack(player);
+                targets.Add(behabiour_Attack(player));
+                break;
             case AI_behaviour.on_self:
-                return behabiour_on_self(enemy);
+                targets.Add(behabiour_on_self(enemy));
+                break;
             case AI_behaviour.on_low_health_allie:
-                return behabiour_on_low_health_allie(all_enemy);
+                targets.Add(behabiour_on_low_health_allie(all_enemy));
+                break;
             case AI_behaviour.on_random_allie:
-                return behabiour_on_random_allie(all_enemy);
+                targets.Add(behabiour_on_random_allie(all_enemy));
+                break;
+            case AI_behaviour.on_all_allies:
+                behaviour_on_all_allies(targets,all_enemy);
+                break;
         }
-        return enemy.gameObject;
+        return targets;
     }
 
     public static GameObject behabiour_Attack(PlayerStats player)
@@ -76,6 +84,14 @@ public static class BattleAI
     public static GameObject behabiour_on_self(EnemyStats enemy)
     {
         return enemy.gameObject;
+    }
+
+    public static void behaviour_on_all_allies(List<GameObject> targets , List<EnemyStats> allEnemies)
+    {
+        foreach(EnemyStats enemy in allEnemies)
+        {
+            targets.Add(enemy.gameObject);
+        }
     }
 
     public static GameObject behabiour_on_low_health_allie(List<EnemyStats> enemies)

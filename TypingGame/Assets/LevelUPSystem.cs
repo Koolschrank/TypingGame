@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class LevelUPSystem : MonoBehaviour
 {
+    public statsPage statPage;
     public int nextLevelUpCost;
     public Level_up_system LUS;
     public Text currentLevel, currentSouls, nextLevelCost;
@@ -32,6 +33,7 @@ public class LevelUPSystem : MonoBehaviour
             SetStatLevelUI();
             SetStartingLevel();
         }
+        SetStatPage();
     }
 
     public void SetStartingLevel()
@@ -39,6 +41,7 @@ public class LevelUPSystem : MonoBehaviour
         startingLevel_h = player.level_health;
         startingLevel_m = player.level_magic;
         startingLevel_c = player.level_capability;
+        SetStatPage();
     }
 
     public void SetStatLevelUI()
@@ -46,6 +49,7 @@ public class LevelUPSystem : MonoBehaviour
         stats[0].SetLevel(player.level_health);
         stats[1].SetLevel(player.level_magic);
         stats[2].SetLevel(player.level_capability);
+        SetStatPage();
     }
 
     public void MenuActive()
@@ -78,6 +82,51 @@ public class LevelUPSystem : MonoBehaviour
 
     public void ChangeStat()
     {
+        if(nextLevelUpCost>player.souls)
+        {
+            TurnCostRed();
+            foreach (stateLevelUI stat in stats)
+            {
+                stat.ShowRight(false);
+            }
+        }
+        else
+        {
+            TurnCostBlack();
+            foreach(stateLevelUI stat in stats)
+            {
+                stat.ShowRight(true);
+            }
+        }
+
+        if (startingLevel_h < player.level_health)
+        {
+            stats[0].ShowLeft(true);
+        }
+        else
+        {
+            stats[0].ShowLeft(false);
+        }
+
+        
+        if (startingLevel_m < player.level_magic)
+        {
+            stats[1].ShowLeft(true);
+        }
+        else
+        {
+            stats[1].ShowLeft(false);
+        }
+
+        if (startingLevel_c < player.level_capability)
+        {
+            stats[2].ShowLeft(true);
+        }
+        else
+        {
+            stats[2].ShowLeft(false);
+        }
+
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             switch (selectedStat)
@@ -156,6 +205,7 @@ public class LevelUPSystem : MonoBehaviour
         GetNextLevelUP();
         SetSouls();
         SetStatLevelUI();
+        SetStatPage();
     }
 
     public void LowerLevel(level_stats stat)
@@ -176,6 +226,7 @@ public class LevelUPSystem : MonoBehaviour
         GetNextLevelUP();
         SetSouls();
         SetStatLevelUI();
+        SetStatPage();
     }
 
     public void GoBack()
@@ -185,4 +236,18 @@ public class LevelUPSystem : MonoBehaviour
         SetActive(false);
     }
 
+    public void SetStatPage()
+    {
+        statPage.SetStats(player);
+    }
+
+    public void TurnCostRed()
+    {
+        nextLevelCost.color = Color.red;
+    }
+
+    public void TurnCostBlack()
+    {
+        nextLevelCost.color = Color.black;
+    }
 }

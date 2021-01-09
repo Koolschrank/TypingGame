@@ -14,6 +14,7 @@ public class SceneTransitioner : MonoBehaviour
     public bool saveTest; // delete later
     public int currentSave=1;
     public bool onCheckPoint;
+    public AudioClip BattleTransitionSound;
 
     private void Awake()
     {
@@ -31,6 +32,7 @@ public class SceneTransitioner : MonoBehaviour
         TransitionAnmimator = GetComponentInChildren<Animator>();
         Debug.Log("start");
         FindObjectOfType<SceneTransitioner>().loadPositions("/playerSavePosition.test");
+        FindObjectOfType<AudioBox>().PlayBackgroundMusic(0);
     }
 
     public void Save_Positions(string saveName)
@@ -61,12 +63,15 @@ public class SceneTransitioner : MonoBehaviour
         savableObjects = FindObjectsOfType<SaveableObject>();
         var _save = SaveSystem.loadPostion(saveName);
         var index = _save.Get_Index();
+        List<string> listList = new List<string>(index);
         var x = _save.Get_x();
         var y = _save.Get_y();
         var inGame = _save.Get_In_game();
         for (int i =0; i < savableObjects.Length;i++)
         {
-            int rightIndex = ArrayUtility.IndexOf(index, savableObjects[i].uniqueIdentifier);
+            //if this is funky wunky than replace it with this  "int rightIndex = ArrayUtility.IndexOf(index, savableObjects[i].uniqueIdentifier);"  
+            // only works in editor though
+            int rightIndex = listList.IndexOf(savableObjects[i].uniqueIdentifier);
             if (rightIndex == -1) continue;
             savableObjects[i].transform.position = new Vector2(x[rightIndex], y[rightIndex]);
             savableObjects[i].inGame = inGame[rightIndex];
@@ -74,9 +79,10 @@ public class SceneTransitioner : MonoBehaviour
         }
     }
 
-    public void TransitionBattle(List<GameObject> _Enemies)
+    public void TransitionBattle(List<GameObject> _Enemies, int battleTheme)
     {
-        
+        FindObjectOfType<AudioBox>().PlaySound(BattleTransitionSound, 1);
+        FindObjectOfType<AudioBox>().PlayBattleMusic(battleTheme);
         currentMap = SceneManager.GetActiveScene().name;
         saveTest = true;
         Enemies = _Enemies;
@@ -88,6 +94,7 @@ public class SceneTransitioner : MonoBehaviour
 
     public void TransitionOutOfBattle()
     {
+        FindObjectOfType<AudioBox>().PlayBackgroundMusic(0);
         saveTest = true;
         FindObjectOfType<PlayerStats>().SavePlayer("/playerSave.test");
         TransitionScene(currentMap, "IntoBackpack");

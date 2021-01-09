@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player_save
 {
     public int hp_max, hp, mp_max, mp, sp_max, sp, strenght, intellect, defence, resistance, currentBody, level,souls,level_h,level_m,level_c;
+    public float hp_cost;
     public int[]slots = new int[5];
     public List<string> Weapons = new List<string>(), Magic = new List<string>(), Skills = new List<string>(), Items = new List<string>(), Items_perma = new List<string>(), Bodies = new List<string>();
 
@@ -22,6 +23,7 @@ public class Player_save
         intellect = player.intellect;
         defence = player.defence;
         resistance = player.resistance;
+        hp_cost = player.hp_cost_percent;
         level = player.level;
         souls = player.souls;
         level_h = player.level_health;

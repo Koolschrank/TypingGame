@@ -52,7 +52,8 @@ public class AbiltyStatsUI : MonoBehaviour
                 cost.text = "Cost: " + _ability._cost + " MP";
                 break;
             case Cost.hp:
-                cost.text = "Cost: " + _ability._cost + " HP";
+                
+                cost.text = "Cost: " + ((int)(_ability._cost * FindObjectOfType<PlayerStats>().hp_cost_percent)).ToString() + " HP ";
                 break;
             case Cost.nothing:
             case Cost.consumable:
