@@ -49,7 +49,14 @@ public class AbiltyStatsUI : MonoBehaviour
         switch(_ability._cost_typ)
         {
             case Cost.mp:
-                cost.text = "Cost: " + _ability._cost + " MP";
+                if (FindObjectOfType<PlayerStats>().CheckForPassiv(passiveSkill.big_brain) && _ability._typ == ability_typ.magical)
+                {
+                    cost.text = "Cost: " + ((int)(_ability._cost * 1.50f)).ToString() + " MP";
+                }
+                else
+                {
+                    cost.text = "Cost: " + _ability._cost.ToString() + " MP";
+                }
                 break;
             case Cost.hp:
                 
@@ -77,6 +84,7 @@ public class AbiltyStatsUI : MonoBehaviour
 
     public string SetPower(Ability _ability, PlayerStats player)
     {
+        bool AP_null = false;
         string _string = "";
         _string += "Power: ";
         _string += CalculateStrenght(_ability, player);
@@ -85,6 +93,7 @@ public class AbiltyStatsUI : MonoBehaviour
         if (_ability.power !=0)
         {
             _string += _ability.power.ToString();
+            AP_null = true;
         }
 
         
@@ -95,7 +104,7 @@ public class AbiltyStatsUI : MonoBehaviour
         }
         else if(_ability.stat_strenght != 1)
         {
-            if (_string != "")
+            if (AP_null == true)
             {
                 _string += " + ";
             }
@@ -104,7 +113,7 @@ public class AbiltyStatsUI : MonoBehaviour
         }
         else
         {
-            if (_string != "")
+            if (AP_null == true)
             {
                 _string += " + ";
             }
@@ -124,15 +133,27 @@ public class AbiltyStatsUI : MonoBehaviour
         power += ability.power;
         if(ability._typ == ability_typ.physical)
         {
-            power += (int)(ability.stat_strenght * player.strenght);
+            if (FindObjectOfType<PlayerStats>().CheckForPassiv(passiveSkill.rage) && (float)(player.hp/player.hp_max) <=0.5f)
+            {
+                power += (int)(ability.stat_strenght * player.strenght*2);
+            }
+            else
+            {
+                power += (int)(ability.stat_strenght * player.strenght);
+            }
         }
         else if (ability._typ == ability_typ.magical)
         {
             power += (int)(ability.stat_strenght * player.intellect);
+            if (FindObjectOfType<PlayerStats>().CheckForPassiv(passiveSkill.big_brain))
+            {
+                power = (int)(power *1.3f);
+            }
+           
         }
         else if (ability._typ == ability_typ.heal)
         {
-            power += (int)(ability.stat_strenght * player.intellect/2);
+            power += (int)(ability.stat_strenght * player.intellect);
         }
 
         return power.ToString();

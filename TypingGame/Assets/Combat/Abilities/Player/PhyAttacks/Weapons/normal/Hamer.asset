@@ -19,12 +19,12 @@ MonoBehaviour:
     any up into your has do what could but our than other some very man upon about
     its only time may la like little then now should can made did such A great In
     must these two before see us
-  _word_count: 8
+  _word_count: 6
   time_per_character: 1
   gimmick: 0
   _cost_typ: 1
   _cost: 4
-  power: 5
+  power: 6
   stat_strenght: 1
   _typ: 0
   _element: 0
@@ -33,11 +33,13 @@ MonoBehaviour:
   _sprite_object: {fileID: 5983543275497993644, guid: b87eea2fa8a1b454cb229d12b158666d, type: 3}
   Impact_object: {fileID: 0}
   impact_size: 1
-  _info: double damage if your are on or below 25% HP
+  castSound: {fileID: 0}
+  soundVolume: 1
+  _info: does 50% more damage if you are on or below 25% HP
   effect_array:
   - effect: 0
     value1: 0.25
-    value2: 2
+    value2: 1.5
   menuIcon: {fileID: 4738360993278665660, guid: 03a31101566f544428d0c4ed51490a35, type: 3}
   icon_size: 2
   spriteRotatet: 1

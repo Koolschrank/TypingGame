@@ -259,14 +259,28 @@ public class BattleSystem : MonoBehaviour
                 power = (int)((ability.power) * (1 + score));
                 break;
         }
-        
+
         // low hp power boost
         if (Effects.Check_for_effect(ability.effect_array, effects.low_hp_power_boost) != null)
         {
             var effect_stats = Effects.Check_for_effect(ability.effect_array, effects.low_hp_power_boost);
-            power = Effects.Low_hp_power_boost(power, player.GetHP(), player.hp_max, effect_stats.value1, effect_stats.value2);
+            if ((float)player.Get_HP_before_Attack() / (float)player.hp_max <= (float)effect_stats.value1)
+            {
+                power = (int)(power * effect_stats.value2);
+            }
+
         }
-        
+
+        if (Effects.Check_for_effect(ability.effect_array, effects.full_hp_boost) != null)
+        {
+            var effect_stats = Effects.Check_for_effect(ability.effect_array, effects.full_hp_boost);
+            if ((float)player.Get_HP_before_Attack() / (float)player.hp_max >= 1f)
+            {
+                power = (int)(power * effect_stats.value1);
+            }
+
+        }
+
 
         if (enemies.Count == 1)
         {
@@ -374,7 +388,24 @@ public class BattleSystem : MonoBehaviour
         if (Effects.Check_for_effect(ability.effect_array, effects.low_hp_power_boost) != null)
         {
             var effect_stats = Effects.Check_for_effect(ability.effect_array, effects.low_hp_power_boost);
-            power = Effects.Low_hp_power_boost(power, selected_enemy.GetHP(), selected_enemy.hp_max, effect_stats.value1, effect_stats.value2);
+            Debug.Log(player.hp / player.hp_max);
+            Debug.Log(effect_stats.value1);
+            if (player.hp / player.hp_max <= effect_stats.value1)
+            {
+                power = (int)(power * effect_stats.value2);
+            }
+
+        }
+
+        if (Effects.Check_for_effect(ability.effect_array, effects.full_hp_boost) != null)
+        {
+            var effect_stats = Effects.Check_for_effect(ability.effect_array, effects.full_hp_boost);
+            Debug.Log(player.hp / player.hp_max);
+            if (player.hp / player.hp_max >= 1)
+            {
+                power = (int)(power * effect_stats.value1);
+            }
+
         }
 
 

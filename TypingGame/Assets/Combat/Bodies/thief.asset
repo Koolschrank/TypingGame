@@ -15,8 +15,8 @@ MonoBehaviour:
   _name: Thief
   sprite: {fileID: 4885709214463256040, guid: 03a31101566f544428d0c4ed51490a35, type: 3}
   animaton: {fileID: 22100000, guid: fa7e8e53bb09bfa4182d9a57df621068, type: 2}
-  strenght: 4
-  intellect: 5
+  strenght: 6
+  intellect: 6
   defence: 3
   resistance: 3
   abilities:

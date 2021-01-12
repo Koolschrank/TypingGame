@@ -10,21 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fdb9e8ff006f91f4ea6427c58cbc1007, type: 3}
-  m_Name: Paladin
+  m_Name: Elf
   m_EditorClassIdentifier: 
-  _name: Paladin
-  sprite: {fileID: -6737360712338713590, guid: 03a31101566f544428d0c4ed51490a35, type: 3}
-  animaton: {fileID: 22100000, guid: 75e8f858707b63c4eac574ffd8efac36, type: 2}
-  strenght: 4
-  intellect: 5
+  _name: Elf
+  sprite: {fileID: 6440628458277568191, guid: 4f346c021a38b2241ad219d308dad3aa, type: 3}
+  animaton: {fileID: 22100000, guid: 7386bc961c0b72c449afcf8c4ce74e28, type: 2}
+  strenght: 3
+  intellect: 6
   defence: 4
-  resistance: 6
+  resistance: 5
   abilities:
   - {fileID: 11400000, guid: 6ce0cb3fca68be740887fb850b3f4e22, type: 2}
   - {fileID: 11400000, guid: 9aeebf28cecf8c34c97de480db11bfad, type: 2}
   - {fileID: 11400000, guid: fd8f235f217829343aaf6f6f425de16d, type: 2}
   fire: 0
-  ice: 0
+  ice: 1
   thunder: 2
-  passiveSkills: 0000000001000000
-  info: Abilities cost less when typing without typos
+  passiveSkills: 0000000004000000
+  info: Revives player with 50% health once per battle(consumes 10 MP, can also be
+    used under 10MP))

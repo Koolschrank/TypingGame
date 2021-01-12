@@ -32,6 +32,7 @@ public class SceneTransitioner : MonoBehaviour
         TransitionAnmimator = GetComponentInChildren<Animator>();
         Debug.Log("start");
         FindObjectOfType<SceneTransitioner>().loadPositions("/playerSavePosition.test");
+        if(FindObjectOfType<AudioBox>())
         FindObjectOfType<AudioBox>().PlayBackgroundMusic(0);
     }
 

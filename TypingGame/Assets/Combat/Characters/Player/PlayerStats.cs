@@ -7,6 +7,7 @@ public class PlayerStats : MonoBehaviour
 {
     AbilitySelect UI;
     public int hp_max, mp_max, sp_max, hp, mp, sp, strenght, intellect, defence, resistance;
+    int hp_before_attack;
     public float hp_cost_percent = 1f;
     float no_typo_boost = 1.5f;
     bool phenix_used;
@@ -250,6 +251,7 @@ public class PlayerStats : MonoBehaviour
         switch (currentAbility._cost_typ)
         {
             case Cost.hp:
+                hp_before_attack = hp;
                 hp = Mathf.Max(1, hp- (int)(Change_Stat(currentAbility._cost, !typos_made) * hp_cost_percent));
                 UI.UpdateSlider();
                 break;
@@ -281,6 +283,11 @@ public class PlayerStats : MonoBehaviour
         FindObjectOfType<BattleSystem>().Player_move(score, typos_made, currentAbility);
         UI.Set_UI();
 
+    }
+
+    public int Get_HP_before_Attack()
+    {
+        return hp_before_attack;
     }
 
     public void Set_Ability(Ability _ability)

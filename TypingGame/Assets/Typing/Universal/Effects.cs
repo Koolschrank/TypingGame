@@ -25,16 +25,6 @@ public static class Effects
         return null;
     }
 
-    // value1 = threshold; value2 = muliplier
-    public static int Low_hp_power_boost(int power, int hp, int hp_max, float threshold, float multiplier)
-    {
-        if ((hp/hp_max) <= threshold)
-        {
-            return (int)(power * multiplier);
-        }
-        
-        return power;
-    }
 
     // value1 = percentage
     public static int Absorb(int damage,float percentage)

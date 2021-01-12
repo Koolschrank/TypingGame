@@ -15,12 +15,13 @@ MonoBehaviour:
   _name: Test
   sprite: {fileID: -6737360712338713590, guid: 03a31101566f544428d0c4ed51490a35, type: 3}
   animaton: {fileID: 22100000, guid: 75e8f858707b63c4eac574ffd8efac36, type: 2}
-  strenght: 6
-  intellect: 4
-  defence: 6
-  resistance: 4
+  strenght: 5
+  intellect: 5
+  defence: 5
+  resistance: 5
   abilities: []
-  fire: 2
+  fire: 0
   ice: 0
-  thunder: 1
+  thunder: 0
   passiveSkills: 01000000
+  info: 

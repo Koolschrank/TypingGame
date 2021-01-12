@@ -40,6 +40,7 @@ public enum effects
     buff,
     absorb,
     oneShotBoost,
+    full_hp_boost,
 }
 
 public enum turns

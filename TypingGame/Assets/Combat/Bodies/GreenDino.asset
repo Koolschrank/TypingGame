@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Dino
   sprite: {fileID: -6175481005366591670, guid: 03a31101566f544428d0c4ed51490a35, type: 3}
   animaton: {fileID: 22100000, guid: 4274fb95eab712140b5d1e2c28de588a, type: 2}
-  strenght: 5
+  strenght: 6
   intellect: 0
   defence: 5
   resistance: 2
