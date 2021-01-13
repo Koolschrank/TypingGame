@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Fire Boss
-  hp_max: 64
+  hp_max: 72
   hp: 0
   strenght: 0
   intellect: 8

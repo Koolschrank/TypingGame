@@ -30,7 +30,9 @@ public class StatusText : MonoBehaviour
 
     public void Set_Off()
     {
+        if(_animator)
         _animator.Play("GoOut");
+        if (gameObject)
         Destroy(gameObject, 2f);
     }
 }

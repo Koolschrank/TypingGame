@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Zombie
-  hp_max: 40
+  hp_max: 38
   hp: 0
   strenght: 8
   intellect: 8

@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: goblin
-  hp_max: 16
+  hp_max: 20
   hp: 0
-  strenght: 5
+  strenght: 6
   intellect: 0
   defence: 0
   resistance: 0

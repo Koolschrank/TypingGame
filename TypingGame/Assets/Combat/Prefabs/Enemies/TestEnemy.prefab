@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: ghoul
-  hp_max: 12
+  hp_max: 16
   hp: 0
-  strenght: 4
+  strenght: 5
   intellect: 0
   defence: 0
   resistance: 0

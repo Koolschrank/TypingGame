@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e088ed5ef6084bf45b2e62b1060bb0e5, type: 3}
-  m_Name: FireBlade
+  m_Name: Ironshild
   m_EditorClassIdentifier: 
-  _name: fire blade
+  _name: Iron Shild
   _words: the of and to a in that I was he his with is it for as had you not be on
     at by her which have or from this but all him she were they my are so me their
     an one de we who would said been no He will them when if there more out And It
@@ -23,20 +23,23 @@ MonoBehaviour:
   time_per_character: 1
   gimmick: 0
   _cost_typ: 1
-  _cost: 6
-  power: 4
+  _cost: 2
+  power: 0
   stat_strenght: 1
-  _typ: 0
-  _element: 1
-  _target: 0
+  _typ: 3
+  _element: 0
+  _target: 2
   _animation: 0
-  _sprite_object: {fileID: 5983543275497993644, guid: 1888f08cae2961e4d94481d89852d821, type: 3}
-  Impact_object: {fileID: 7810009366253378566, guid: 6462397568902e444953238a9c766420, type: 3}
+  _sprite_object: {fileID: 0}
+  Impact_object: {fileID: 0}
   impact_size: 1
   castSound: {fileID: 0}
   soundVolume: 1
-  _info: 
-  effect_array: []
-  menuIcon: {fileID: -1661353534350884840, guid: 03a31101566f544428d0c4ed51490a35, type: 3}
+  _info: Raises defence by 10 for 1 turn
+  effect_array:
+  - effect: 2
+    value1: 13
+    value2: 0
+  menuIcon: {fileID: 21300000, guid: d73e4641c3730dd44840290b7ed7cce7, type: 3}
   icon_size: 2
   spriteRotatet: 1

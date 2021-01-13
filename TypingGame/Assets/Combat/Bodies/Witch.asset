@@ -16,7 +16,7 @@ MonoBehaviour:
   sprite: {fileID: 4597055960647571741, guid: 03a31101566f544428d0c4ed51490a35, type: 3}
   animaton: {fileID: 22100000, guid: 151650833f58b0e42ad0794ca1ecca55, type: 2}
   strenght: 0
-  intellect: 7
+  intellect: 8
   defence: 2
   resistance: 5
   abilities:

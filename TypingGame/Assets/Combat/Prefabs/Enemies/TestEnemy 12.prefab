@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Troll
-  hp_max: 40
+  hp_max: 42
   hp: 0
-  strenght: 8
+  strenght: 10
   intellect: 10
   defence: 0
   resistance: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
     C_Value1: 0.5
     C_Value2: 0
     abilities:
-    - {fileID: 11400000, guid: 2d79795fdff558849a45bfe4d7dfd9ed, type: 2}
+    - {fileID: 11400000, guid: abd36be0a794a2b4cbce66d8564f24be, type: 2}
     cooldown: 2
     currentCoolDown: 0
     probability: 0.5

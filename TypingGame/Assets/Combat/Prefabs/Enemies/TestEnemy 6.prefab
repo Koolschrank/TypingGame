@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Enemy
-  hp_max: 12
+  hp_max: 16
   hp: 0
   strenght: 3
   intellect: 6

@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Big Org
-  hp_max: 60
+  hp_max: 72
   hp: 0
   strenght: 6
   intellect: 2

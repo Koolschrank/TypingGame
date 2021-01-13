@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: fire monster
-  hp_max: 32
+  hp_max: 36
   hp: 0
   strenght: 3
   intellect: 10

@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: org mage
-  hp_max: 30
+  hp_max: 36
   hp: 0
   strenght: 6
   intellect: 4

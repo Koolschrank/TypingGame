@@ -604,13 +604,22 @@ public class PlayerStats : MonoBehaviour
     {
         for (int i = 0; i < _buffs.Count; i++)
         {
+            if(_buffs[i] == null)
+            {
+                continue;
+            }
             var _buff = _buffs[i];
             _buff.turnsLeft--;
             if (_buff.turnsLeft < 0)
             {
                 _buffs.RemoveAt(i);
                 SetBody(playerBodies[currentBody]);
-                stat_texts[i].Set_Off();
+                if(stat_texts[i] != null)
+                {
+                    stat_texts[i].Set_Off();
+                    stat_texts.Remove(stat_texts[i]);
+                }
+                
             }
         }
 
@@ -626,6 +635,7 @@ public class PlayerStats : MonoBehaviour
             }
         }
     }
+
 
     public void ApplyBuff(Effects.Buff buff, int add)
     {

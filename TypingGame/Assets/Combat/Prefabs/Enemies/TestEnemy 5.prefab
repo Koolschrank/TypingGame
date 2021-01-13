@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: org
-  hp_max: 30
+  hp_max: 36
   hp: 0
-  strenght: 6
+  strenght: 7
   intellect: 10
   defence: 0
   resistance: 0

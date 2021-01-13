@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Ice Zombie
-  hp_max: 40
+  hp_max: 42
   hp: 0
   strenght: 8
   intellect: 4

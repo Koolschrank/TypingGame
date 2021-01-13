@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: slime
-  hp_max: 30
+  hp_max: 40
   hp: 0
   strenght: 5
   intellect: 8

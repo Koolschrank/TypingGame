@@ -21,7 +21,7 @@ MonoBehaviour:
   time_per_character: 1.1
   gimmick: 0
   _cost_typ: 1
-  _cost: 8
+  _cost: 6
   power: 8
   stat_strenght: 1
   _typ: 0

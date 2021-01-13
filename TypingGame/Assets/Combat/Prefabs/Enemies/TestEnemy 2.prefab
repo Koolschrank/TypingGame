@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: fire guy
-  hp_max: 16
+  hp_max: 20
   hp: 0
   strenght: 3
   intellect: 7

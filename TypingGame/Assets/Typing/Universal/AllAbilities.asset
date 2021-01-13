@@ -69,8 +69,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1bfad5d2455609946ab6f5b384471e50, type: 2}
   - {fileID: 11400000, guid: fdfa05d7f9c4c66479db6ac9bd5db3bb, type: 2}
   - {fileID: 11400000, guid: 9e78f076cc4ed5c4fb5061702b5ed1af, type: 2}
-  - {fileID: 11400000, guid: 9914b90543aaae84496907cc89bfc947, type: 2}
-  - {fileID: 11400000, guid: 9914b90543aaae84496907cc89bfc947, type: 2}
+  - {fileID: 11400000, guid: e93097f95111aa84f8ed2e9e3f4dbe03, type: 2}
+  - {fileID: 11400000, guid: 6cf8db82d0e5ee04ab8f7311352f4f94, type: 2}
   - {fileID: 11400000, guid: 9914b90543aaae84496907cc89bfc947, type: 2}
   - {fileID: 11400000, guid: 9914b90543aaae84496907cc89bfc947, type: 2}
   playerBodies:
@@ -152,11 +152,11 @@ MonoBehaviour:
     - stat: 1
       power: 6
     turnsLeft: 1
-  - Name: Mind Charge
+  - Name: Shild
     stats:
-    - stat: 1
-      power: 6
-    turnsLeft: 1
+    - stat: 2
+      power: 10
+    turnsLeft: 0
   - Name: Fire Null
     stats:
     - stat: 4

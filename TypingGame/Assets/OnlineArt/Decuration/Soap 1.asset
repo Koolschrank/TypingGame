@@ -34,7 +34,7 @@ MonoBehaviour:
     m_RuleTransform: 0
   - m_Id: 1
     m_Sprites:
-    - {fileID: -8237541199133617488, guid: 29152ed9d0449514d934f7471526571a, type: 3}
+    - {fileID: -5937357150717488392, guid: 29152ed9d0449514d934f7471526571a, type: 3}
     - {fileID: -4302604778006567334, guid: 03a31101566f544428d0c4ed51490a35, type: 3}
     - {fileID: -4764788229388220709, guid: 03a31101566f544428d0c4ed51490a35, type: 3}
     m_GameObject: {fileID: 0}

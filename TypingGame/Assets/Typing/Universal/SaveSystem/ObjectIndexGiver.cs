@@ -12,7 +12,21 @@ public class ObjectIndexGiver : MonoBehaviour
     List<int> saveInts = new List<int>();
     public int nextIndex;
 
-    
+#if UNITY_EDITOR
+    public void ShuffleNumbers()
+    {
+        foreach(SaveableObject _object in savableObjects)
+        {
+            _object.uniqueIdentifier = nextIndex.ToString() + Random.Range(1, 1000000).ToString();
+            nextIndex++;
+            AssetDatabase.Refresh();
+
+            EditorUtility.SetDirty(_object);
+            AssetDatabase.SaveAssets();
+            Debug.Log("shuffle");
+        }
+    }
+#endif
     private void Update()
     {
 

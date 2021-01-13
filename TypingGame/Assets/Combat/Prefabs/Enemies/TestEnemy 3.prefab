@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: skeleton
-  hp_max: 20
+  hp_max: 24
   hp: 0
   strenght: 0
   intellect: 0
