@@ -32,7 +32,6 @@ public class StatusText : MonoBehaviour
     {
         if(_animator)
         _animator.Play("GoOut");
-        if (gameObject)
-        Destroy(gameObject, 2f);
+        //Destroy(gameObject, 2f);
     }
 }

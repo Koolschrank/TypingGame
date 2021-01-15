@@ -106,7 +106,6 @@ public class BattleSystem : MonoBehaviour
     public void player_ability_select()
     {
         ability_select.Set_Active();
-        
     }
 
     public void player_attack_typing()
@@ -163,7 +162,6 @@ public class BattleSystem : MonoBehaviour
                     GameObject _impact = Instantiate(_action._ability.Impact_object, target.transform.position, transform.rotation) as GameObject;
                     _impact.transform.localScale = new Vector3(_action._ability.impact_size, _action._ability.impact_size, _action._ability.impact_size);
                 }
-                
             }
         }
         theatre.Ability_Animation(selected_enemy.gameObject, _current_ability);

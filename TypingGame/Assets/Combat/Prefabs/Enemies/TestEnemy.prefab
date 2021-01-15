@@ -56,7 +56,6 @@ MonoBehaviour:
   UI: {fileID: 0}
   resistens: 0
   _overTimeAbilities: []
-  _buffs: []
   behaviours:
   - behaviour: 0
     B_Value1: 0

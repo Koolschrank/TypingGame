@@ -23,8 +23,8 @@ public class PlayerStats : MonoBehaviour
     Animator animator;
     SpriteRenderer sprite;
     public List<Effects.over_time_ability> _overTimeAbilities = new List<Effects.over_time_ability>();
-    public List<Effects.Buff> _buffs = new List<Effects.Buff>();
-    List<StatusText> stat_texts = new List<StatusText>();
+    public Effects.Buff[] _buffs = new Effects.Buff[4];
+    StatusText[] stat_texts = new StatusText[4];
     public AbilityFolder AllAbilities;
     public PublicVaribles p_varibles;
     public int level, souls, levelUP_startCost, levelUP_levelAdditionCost, level_health, level_magic, level_capability;
@@ -45,6 +45,7 @@ public class PlayerStats : MonoBehaviour
             RefillStats();
             
         }
+        
         
 
     }
@@ -376,9 +377,19 @@ public class PlayerStats : MonoBehaviour
 
         }
         _new_buff.turnsLeft = _buff.turnsLeft;
-        _buffs.Add(_new_buff);
-        ApplyBuff(_new_buff, 1);
-        AddStatText(_new_buff.Name, _buffs.Count - 1);
+        for(int i=0;i<_buffs.Length; i++ )
+        {
+            if(_buffs[i].Name == "" )
+            {
+                _buffs[i] =(_new_buff);
+                ApplyBuff(_new_buff, 1);
+                AddStatText(_new_buff.Name, i);
+                break;
+            }
+        }
+        
+        
+        
     }
 
     public void Apply_OTA(int power, bool typos_made, Ability ability,float score)
@@ -593,18 +604,19 @@ public class PlayerStats : MonoBehaviour
 
     public void AddStatText(string name, int position)
     {
+        Debug.Log("peka pow");
         var _stat_text = Instantiate(p_varibles.StatText, new Vector2(transform.position.x + p_varibles.buff_text_positions[position].x, transform.position.y + p_varibles.buff_text_positions[position].y), Quaternion.identity);
         _stat_text.GetComponent<StatusText>()._text = name;
         _stat_text.transform.parent = transform;
-        stat_texts.Add(_stat_text.GetComponent<StatusText>());
+        stat_texts[position]=(_stat_text.GetComponent<StatusText>());
 
     }
 
     public void time_effects()
     {
-        for (int i = 0; i < _buffs.Count; i++)
+        for (int i = 0; i < _buffs.Length; i++)
         {
-            if(_buffs[i] == null)
+            if(_buffs[i].Name == "")
             {
                 continue;
             }
@@ -612,12 +624,12 @@ public class PlayerStats : MonoBehaviour
             _buff.turnsLeft--;
             if (_buff.turnsLeft < 0)
             {
-                _buffs.RemoveAt(i);
+                SetBuffToNull(i);
                 SetBody(playerBodies[currentBody]);
                 if(stat_texts[i] != null)
                 {
                     stat_texts[i].Set_Off();
-                    stat_texts.Remove(stat_texts[i]);
+                    stat_texts[i] = null;
                 }
                 
             }
@@ -636,11 +648,22 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    public void SetBuffToNull(int i)
+    {
+        _buffs[i].Name = "";
+        
+    }
+
 
     public void ApplyBuff(Effects.Buff buff, int add)
     {
+        if(buff.Name ==null)
+        {
+            return;
+        }
         foreach (Effects.BuffEffect effect in buff.stats)
         {
+            
             switch (effect.stat)
             {
                 case BuffEffects.strenght:
@@ -732,10 +755,9 @@ public class PlayerStats : MonoBehaviour
 
     public void RemoveAllBuffs()
     {
-        for (int i = 0; i < _buffs.Count; i++)
+        for (int i = 0; i < _buffs.Length; i++)
         {
             ApplyBuff(_buffs[i], -1);
-            stat_texts[i].Set_Off();
 
         }
     }

@@ -15,8 +15,8 @@ public class EnemyStats : MonoBehaviour
     public enemyUI UI;
     public EnemyResistens resistens = EnemyResistens.normal;
     public List<Effects.over_time_ability> _overTimeAbilities = new List<Effects.over_time_ability>();
-    public List<Effects.Buff> _buffs = new List<Effects.Buff>();
-    List<StatusText> stat_texts = new List<StatusText>();
+    Effects.Buff[] _buffs = new Effects.Buff[4];
+    StatusText[] stat_texts = new StatusText[4];
     public behaviour_AI[] behaviours;
     public ElementalEffectiveness[] elements;
     public AudioClip defeatSound;
@@ -300,14 +300,18 @@ public class EnemyStats : MonoBehaviour
 
     public void time_effects()
     {
-        for(int i = 0; i < _buffs.Count; i++)
+        for(int i = 0; i < _buffs.Length; i++)
         {
+            if (_buffs[i] == null || _buffs[i].Name == "")
+            {
+                continue;
+            }
             var _buff = _buffs[i];
             _buff.turnsLeft--;
             if (_buff.turnsLeft <0)
             {
                 ApplyBuff(_buff, -1);
-                _buffs.RemoveAt(i);
+                SetBuffToNull(i);
                 stat_texts[i].Set_Off();
             }
         }
@@ -325,10 +329,20 @@ public class EnemyStats : MonoBehaviour
         }
     }
 
+    public void SetBuffToNull(int i)
+    {
+        _buffs[i].Name = "";
+
+    }
+
     public void AddBuff(Effects.Buff _buff)
     {
         foreach (Effects.Buff _buff_name in _buffs)
         {
+            if(_buff_name == null)
+            {
+                continue;
+            }
             if (_buff_name.Name == _buff.Name)
             {
                 _buff_name.turnsLeft = _buff.turnsLeft;
@@ -347,9 +361,16 @@ public class EnemyStats : MonoBehaviour
             
         }
         _new_buff.turnsLeft = _buff.turnsLeft;
-        _buffs.Add(_new_buff);
-        ApplyBuff(_new_buff, 1);
-        AddStatText(_new_buff.Name, _buffs.Count - 1);
+        for (int i = 0; i < _buffs.Length; i++)
+        {
+            if (_buffs[i] == null || _buffs[i].Name == "")
+            {
+                _buffs[i] = (_new_buff);
+                ApplyBuff(_new_buff, 1);
+                AddStatText(_new_buff.Name, i);
+                break;
+            }
+        }
 
     }
 
@@ -358,12 +379,16 @@ public class EnemyStats : MonoBehaviour
         var _stat_text = Instantiate(p_varibles.StatText, new Vector2(transform.position.x + p_varibles.buff_text_positions[position].x, transform.position.y + p_varibles.buff_text_positions[position].y), Quaternion.identity);
         _stat_text.GetComponent<StatusText>()._text = name;
         _stat_text.transform.parent = transform;
-        stat_texts.Add(_stat_text.GetComponent<StatusText>());
+        stat_texts[position] =(_stat_text.GetComponent<StatusText>());
 
     }
 
     public void ApplyBuff(Effects.Buff buff, int add)
     {
+        if(buff.Name =="")
+        {
+            return;
+        }
         foreach(Effects.BuffEffect effect in buff.stats )
         {
             switch(effect.stat)

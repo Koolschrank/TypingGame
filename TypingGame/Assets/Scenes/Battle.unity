@@ -3309,7 +3309,19 @@ MonoBehaviour:
   startingBody: 0
   can_swich_body: 1
   _overTimeAbilities: []
-  _buffs: []
+  _buffs:
+  - Name: 
+    stats: []
+    turnsLeft: 0
+  - Name: 
+    stats: []
+    turnsLeft: 0
+  - Name: 
+    stats: []
+    turnsLeft: 0
+  - Name: 
+    stats: []
+    turnsLeft: 0
   AllAbilities: {fileID: 11400000, guid: 07b7930fb9dedce49b0bf8681c413f89, type: 2}
   p_varibles: {fileID: 11400000, guid: 5ab1a3a8dcc12894780b3a2c01fefb40, type: 2}
   level: 0
