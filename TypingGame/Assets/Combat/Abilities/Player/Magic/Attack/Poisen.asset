@@ -20,8 +20,8 @@ MonoBehaviour:
   gimmick: 0
   _cost_typ: 2
   _cost: 4
-  power: 3
-  stat_strenght: 1
+  power: 4
+  stat_strenght: 0.5
   _typ: 1
   _element: 0
   _target: 0
@@ -29,6 +29,8 @@ MonoBehaviour:
   _sprite_object: {fileID: 0}
   Impact_object: {fileID: 0}
   impact_size: 1
+  castSound: {fileID: 0}
+  soundVolume: 1
   _info: The target takes damage over time
   effect_array:
   - effect: 1

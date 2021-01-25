@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: FlexUp
   m_EditorClassIdentifier: 
   _name: flex up
-  _words: agenda ambiguous bibulous debilitate introspection futile mundane naive
-    obvious succumb deus ex machina
+  _words: spot rep set super intervals resistance training negatives recovery failure
+    bar weights Biceps shoulders Quadriceps ripped jacked weightlifting treadmill
+    gym
   _word_count: 3
   time_per_character: 1.5
   gimmick: 0

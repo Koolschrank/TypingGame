@@ -22,3 +22,4 @@ MonoBehaviour:
   downColor: {r: 0.48400003, g: 0.48400003, b: 0.48400003, a: 1}
   bodySwapPartical: {fileID: 4394849355046899836, guid: bcd763a6b4c681e42b9f1f4712d608a8, type: 3}
   pickUpSound: {fileID: 8300000, guid: 1e1de190bbda0f740a23d5d94d174327, type: 3}
+  enemyHP: 0.8

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb9e8ff006f91f4ea6427c58cbc1007, type: 3}
   m_Name: FireGuy
   m_EditorClassIdentifier: 
-  _name: FireGuy
-  sprite: {fileID: 4597055960647571741, guid: 03a31101566f544428d0c4ed51490a35, type: 3}
-  animaton: {fileID: 22100000, guid: 151650833f58b0e42ad0794ca1ecca55, type: 2}
-  strenght: 4
-  intellect: 8
-  defence: 5
+  _name: Fire Witch
+  sprite: {fileID: 3135285931839192583, guid: 3343f9f930529cb48aeb187b44872d69, type: 3}
+  animaton: {fileID: 22100000, guid: c4916822c6e35f243ba56adfc45b2cb7, type: 2}
+  strenght: 2
+  intellect: 10
+  defence: 3
   resistance: 5
   abilities:
   - {fileID: 11400000, guid: 4e03c335eb2ae5e46a52be652ce6a3c0, type: 2}

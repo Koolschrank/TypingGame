@@ -7,14 +7,23 @@ public class AbilityDisplay : MonoBehaviour
 {
     public Sprite[] sprites;
     Image _currentSpeite;
+    public Image selectImage;
     public Text _name, _power, _cost, _number;
     Vector2 normalScale;
 
 
     void Start()
     {
+        if(selectImage)
+        selectImage.enabled = false;
         _currentSpeite = GetComponent<Image>();
         normalScale = transform.localScale;
+    }
+
+    public void Select(bool show)
+    {
+        if (selectImage)
+            selectImage.enabled = show;
     }
 
     public void SetNumber(int number)

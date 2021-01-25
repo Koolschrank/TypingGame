@@ -251,6 +251,12 @@ public class AbilitySelect : MonoBehaviour
             ASUI.SetActions(_text, _number);
             return;
         }
+        else if (ability._cost_typ == Cost.mp && player.mp < ability._cost*1.3 && player.CheckForPassiv(passiveSkill.big_brain))
+        {
+            _text = "not enougt MP";
+            ASUI.SetActions(_text, _number);
+            return;
+        }
 
         int _number_int = 1;
         if (enemies != null && ability._target == Target.one)

@@ -35,7 +35,7 @@ MonoBehaviour:
   impact_size: 1
   castSound: {fileID: 8300000, guid: 1e1de190bbda0f740a23d5d94d174327, type: 3}
   soundVolume: 1
-  _info: Fills HP
+  _info: Fills MP
   effect_array: []
   menuIcon: {fileID: 21300000, guid: d34f0e0594da2104d96caed0d04e0b03, type: 3}
   icon_size: 2

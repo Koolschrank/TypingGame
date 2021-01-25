@@ -28,7 +28,7 @@ public class PlayerStats : MonoBehaviour
     public AbilityFolder AllAbilities;
     public PublicVaribles p_varibles;
     public int level, souls, levelUP_startCost, levelUP_levelAdditionCost, level_health, level_magic, level_capability;
-    
+    public bool[] keys;
 
 
 
@@ -54,12 +54,19 @@ public class PlayerStats : MonoBehaviour
 
     public void LoadPlayerSave(string saveName)
     {
-        foreach(Player_universal.Ability_Typ _at in Ability_typs)
+        var _save = SaveSystem.loadPlayerFile(saveName);
+        if (_save == null)
+        {
+            Debug.Log("kek");
+            return;
+        }
+
+        foreach (Player_universal.Ability_Typ _at in Ability_typs)
         {
             _at.abilities.Clear();
         }
 
-        var _save = SaveSystem.loadPlayerFile(saveName);
+        
         hp_max = _save.hp_max;
         hp = _save.hp;
         mp_max = _save.mp_max;
@@ -72,6 +79,13 @@ public class PlayerStats : MonoBehaviour
         level_health = _save.level_h;
         level_magic = _save.level_m;
         level_capability = _save.level_c;
+
+        keys = new bool[4];
+        for (int i =0; i< _save.keys.Length; i++)
+        {
+            keys[i] = _save.keys[i];
+        }
+        
         //strenght = _save.strenght;
         //intellect = _save.intellect;
         //defence = _save.defence;
@@ -657,7 +671,8 @@ public class PlayerStats : MonoBehaviour
 
     public void ApplyBuff(Effects.Buff buff, int add)
     {
-        if(buff.Name ==null)
+       
+        if (buff.Name ==null || buff.Name == "")
         {
             return;
         }

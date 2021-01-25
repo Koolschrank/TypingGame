@@ -78,7 +78,7 @@ MonoBehaviour:
     abilities:
     - {fileID: 11400000, guid: c8e169640d15302499bc62f7fde1b06e, type: 2}
     cooldown: 4
-    currentCoolDown: 0
+    currentCoolDown: 1
     probability: 0.3
     test_string: Heal
   - behaviour: 0

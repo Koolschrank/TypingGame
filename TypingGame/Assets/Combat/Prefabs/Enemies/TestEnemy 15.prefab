@@ -56,7 +56,6 @@ MonoBehaviour:
   UI: {fileID: 0}
   resistens: 0
   _overTimeAbilities: []
-  _buffs: []
   behaviours:
   - behaviour: 2
     B_Value1: 0
@@ -88,7 +87,7 @@ MonoBehaviour:
   defeatSound: {fileID: 8300000, guid: dd98203a28ae31c4e962b90b5e75dc7b, type: 3}
   AllAbilities: {fileID: 11400000, guid: 07b7930fb9dedce49b0bf8681c413f89, type: 2}
   p_varibles: {fileID: 11400000, guid: 5ab1a3a8dcc12894780b3a2c01fefb40, type: 2}
-  souls_drop: 30
+  souls_drop: 50
 --- !u!95 &-3195029682117228300
 Animator:
   serializedVersion: 3

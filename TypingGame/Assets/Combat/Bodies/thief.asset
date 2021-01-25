@@ -22,7 +22,9 @@ MonoBehaviour:
   abilities:
   - {fileID: 11400000, guid: fc0294cf52e04e84bb611a4fa2c9555c, type: 2}
   - {fileID: 11400000, guid: 03126597618307f4dad5fe5cf8dae8de, type: 2}
+  - {fileID: 11400000, guid: c8e169640d15302499bc62f7fde1b06e, type: 2}
   - {fileID: 11400000, guid: 952ab7a2d55eaa94ebb8949535fb11d9, type: 2}
+  - {fileID: 11400000, guid: b87baa2942be63547a67a8066b0be6d7, type: 2}
   fire: 0
   ice: 0
   thunder: 0

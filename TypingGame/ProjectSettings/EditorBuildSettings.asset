@@ -6,12 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 7f914f0ea5b2b424c823688055ac8091
+  - enabled: 1
+    path: Assets/Scenes/WPMTest.unity
+    guid: 44779b3b7a88f754e8d88fdb42fede4f
+  - enabled: 1
     path: Assets/Scenes/TestLevel 2.unity
     guid: 5b97e917cd2af9247a6119b3251e95c4
   - enabled: 1
+    path: Assets/Scenes/TestLevel 3.unity
+    guid: 9e63fe59dd658f440aff5407155ef8c4
+  - enabled: 1
     path: Assets/Scenes/Battle.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/Jump'n'Run.unity
-    guid: 06ec1583f1de16e4ab17dbcb1c704e2f
   m_configObjects: {}

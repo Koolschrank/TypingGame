@@ -24,6 +24,7 @@ public class BattleSystem : MonoBehaviour
     SceneTransitioner sceneTransition;
     int enemy_Counter, currentTurn =-1;
     bool extraTurnBool; // checks if multible foes activated extraTurn
+    public bool[] enemy_spaces = new bool[4];
 
 
     private void Start()
@@ -52,6 +53,53 @@ public class BattleSystem : MonoBehaviour
         }
         theatre.SetEnemies(enemies);
         Set_enemies_positions();
+    }
+
+    public void load_enemy_mid_fight(GameObject enemy)
+    {
+        int new_position =0;
+        var loarded_enemy = Instantiate(enemy, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        if(enemy_spaces[0]==false)
+        {
+            new_position = 0;
+            enemies.Insert(0, loarded_enemy.GetComponent<EnemyStats>());
+            theatre.InsertEnemy(0, loarded_enemy.GetComponent<EnemyStats>());
+            enemy_spaces[0] = true;
+            enemy_Counter++;
+        }
+        else if (enemy_spaces[1] == false)
+        {
+            new_position = 1;
+            enemies.Insert(1, loarded_enemy.GetComponent<EnemyStats>());
+            theatre.InsertEnemy(1, loarded_enemy.GetComponent<EnemyStats>());
+            enemy_spaces[1] = true;
+            enemy_Counter++;
+        }
+        else if (enemy_spaces[2] == false)
+        {
+            new_position = 2;
+            enemies.Insert(2, loarded_enemy.GetComponent<EnemyStats>());
+            theatre.InsertEnemy(2,loarded_enemy.GetComponent<EnemyStats>());
+            enemy_spaces[2] = true;
+            enemy_Counter++;
+        }
+        else if (enemy_spaces[3] == false)
+        {
+            new_position = 3;
+            enemies.Add( loarded_enemy.GetComponent<EnemyStats>());
+            theatre.AddEnemy(loarded_enemy.GetComponent<EnemyStats>());
+            enemy_spaces[3] = true;
+        }
+        loarded_enemy.GetComponent<EnemyStats>().SetPosition(new_position);
+        //enemies.Add(loarded_enemy.GetComponent<EnemyStats>());
+        loarded_enemy.GetComponent<CharacterAnimation>().Turn(true);
+        enemyUIs[new_position].gameObject.SetActive(true);
+        loarded_enemy.gameObject.transform.parent = theatre.gameObject.transform;
+        loarded_enemy.transform.position = enemy_positions[new_position].transform.position;
+
+        loarded_enemy.GetComponent<EnemyStats>().UI = enemyUIs[new_position];
+        loarded_enemy.GetComponent<EnemyStats>().Set_UI();
+
     }
 
     public void Next_turn()
@@ -140,9 +188,34 @@ public class BattleSystem : MonoBehaviour
 
     public void enemy_step_forward()
     {
+        if (enemies.Count <= enemy_Counter)
+        {
+
+            Debug.Log("bruh");
+            Start_turn_order();
+            Next_turn();
+            return;
+        }
+        var c_enemy = enemies[enemy_Counter];
+        Debug.Log(enemies.Count);
+        Debug.Log(enemy_Counter);
+        enemies[enemy_Counter].time_effects();
+        
+        if (enemies.Count <= enemy_Counter)
+        {
+            
+            Debug.Log("bruh");
+            Start_turn_order();
+            Next_turn();
+            return;
+        }
+        if (enemies.IndexOf(c_enemy) == -1)
+        {
+            return;
+        }
         selected_enemy = enemies[enemy_Counter];
         theatre.Step(enemies[enemy_Counter].gameObject, true, false);
-        enemies[enemy_Counter].time_effects();
+        
     }
 
     public void enemy_attack_typing()
@@ -179,6 +252,11 @@ public class BattleSystem : MonoBehaviour
     {
         
         enemy_Counter++;
+        if(enemy_Counter >= enemies.Count)
+        {
+            Start_turn_order();
+        }
+        Debug.Log(enemy_Counter);
         //if (enemies.Count <= enemy_Counter) return;
         //if (!enemies[enemy_Counter].IsDead())
         //{
@@ -187,6 +265,7 @@ public class BattleSystem : MonoBehaviour
 
     public void RemoveEnemy(EnemyStats _dead_enemie, Ability ability_stats, bool onGround)
     {
+        enemy_spaces[_dead_enemie.GetPosition()] = false;
         theatre.KO_object(_dead_enemie.gameObject);
         enemies.Remove(_dead_enemie);
         if (currentTurn<4 && ability_stats._typ == ability_typ.physical)
@@ -196,17 +275,22 @@ public class BattleSystem : MonoBehaviour
         else if(currentTurn >= 4)
         {
             currentTurn--;
-            Set_turn_order();
+            Change_turn_order();
             Next_turn();
+            
         }
         else 
         {
             // staies empty if everything work out 
-            Set_turn_order();
+            Change_turn_order();
         }
-        
-        
-        if(enemies.Count <=0)
+
+        if (enemy_Counter >= enemies.Count)
+        {
+            Start_turn_order();
+            Next_turn();
+        }
+        if (enemies.Count <=0)
         {
             WinState();
         }
@@ -359,6 +443,33 @@ public class BattleSystem : MonoBehaviour
         
     }
 
+    public void Enemy_Summons(int count, GameObject[] enemies)
+    {
+        count = Mathf.Min(count, 4 - this.enemies.Count);
+
+        bool toPlayer = false;
+        EnemySummon(count, enemies);
+        Next_turn();
+
+        /*foreach (GameObject target in _ability.Get_enemy_target())
+        {
+            if (target.GetComponent<PlayerStats>())
+            {
+                FindObjectOfType<BattleTyper>().Start_typing(_ability._words, _ability._word_count, _ability.time_per_character, false, _ability.gimmick);
+                toPlayer = true;
+            }
+            else
+            {
+
+                Enemy_move(1, true, _ability); // 1 and true don't matter
+                Next_turn();
+                return;
+            }
+        }*/
+
+
+    }
+
     public void Enemy_move(float score, bool typos_made, Ability ability)
     {
         if (ability.castSound != null)
@@ -502,28 +613,28 @@ public class BattleSystem : MonoBehaviour
         switch (enemies.Count)
         {
             case 1:
-                Set_enemy_position(enemies[0], enemy_positions[2], enemyUIs[2]);
+                Set_enemy_position(enemies[0], enemy_positions[2], enemyUIs[2], 2);
                 enemyUIs[0].gameObject.SetActive(false); 
                 enemyUIs[1].gameObject.SetActive(false); 
                 enemyUIs[3].gameObject.SetActive(false); 
                 break;
             case 2:
-                Set_enemy_position(enemies[0], enemy_positions[1], enemyUIs[1]);
-                Set_enemy_position(enemies[1], enemy_positions[3], enemyUIs[3]);
+                Set_enemy_position(enemies[0], enemy_positions[1], enemyUIs[1], 0);
+                Set_enemy_position(enemies[1], enemy_positions[3], enemyUIs[3], 3);
                 enemyUIs[0].gameObject.SetActive(false); 
                 enemyUIs[2].gameObject.SetActive(false);
                 break;
             case 3:
-                Set_enemy_position(enemies[0], enemy_positions[1], enemyUIs[1]);
-                Set_enemy_position(enemies[1], enemy_positions[2], enemyUIs[2]);
-                Set_enemy_position(enemies[2], enemy_positions[3], enemyUIs[3]);
+                Set_enemy_position(enemies[0], enemy_positions[1], enemyUIs[1], 1);
+                Set_enemy_position(enemies[1], enemy_positions[2], enemyUIs[2], 2);
+                Set_enemy_position(enemies[2], enemy_positions[3], enemyUIs[3], 3);
                 enemyUIs[0].gameObject.SetActive(false);
                 break;
             case 4:
-                Set_enemy_position(enemies[0], enemy_positions[0], enemyUIs[0]);
-                Set_enemy_position(enemies[1], enemy_positions[1], enemyUIs[1]);
-                Set_enemy_position(enemies[2], enemy_positions[2], enemyUIs[2]);
-                Set_enemy_position(enemies[3], enemy_positions[3], enemyUIs[3]);
+                Set_enemy_position(enemies[0], enemy_positions[0], enemyUIs[0], 0);
+                Set_enemy_position(enemies[1], enemy_positions[1], enemyUIs[1], 1);
+                Set_enemy_position(enemies[2], enemy_positions[2], enemyUIs[2], 2);
+                Set_enemy_position(enemies[3], enemy_positions[3], enemyUIs[3], 3);
                 break;
         }
 
@@ -534,12 +645,15 @@ public class BattleSystem : MonoBehaviour
 
     }
 
-    public void Set_enemy_position(EnemyStats enemy, GameObject position, enemyUI UI)
+    public void Set_enemy_position(EnemyStats enemy, GameObject position, enemyUI UI, int positionInt)
     {
         enemy.gameObject.transform.parent = theatre.gameObject.transform;
         enemy.transform.position = position.transform.position;
-        
+        enemyUIs[positionInt].gameObject.SetActive(true);
         enemy.UI = UI;
+        enemy.Set_UI();
+        enemy_spaces[positionInt] = true;
+        enemy.SetPosition(positionInt);
     }
 
     public void Change_enemy_names()
@@ -597,6 +711,27 @@ public class BattleSystem : MonoBehaviour
         enemy_Counter = 0;
         AddPlayerTurn();
         foreach(EnemyStats enemy in enemies)
+        {
+            AddEnemyTurn();
+        }
+    }
+
+    public void Change_turn_order()
+    {
+        turn_order.Clear();
+        AddPlayerTurn();
+        foreach (EnemyStats enemy in enemies)
+        {
+            AddEnemyTurn();
+        }
+    }
+
+    public void Start_turn_order()
+    {
+        currentTurn = -1;
+        turn_order.Clear();
+        AddPlayerTurn();
+        foreach (EnemyStats enemy in enemies)
         {
             AddEnemyTurn();
         }
@@ -680,6 +815,24 @@ public class BattleSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         sceneTransition.TransitionOutOfBattle();
+    }
+
+    public void EnemySummon(int count, GameObject[] enemies)
+    {
+        Debug.Log(count);
+        List<GameObject> enemies_summoned = new List<GameObject>();
+        for(int i =0; i<count; i++)
+        {
+            enemies_summoned.Add(enemies[Random.Range(0, enemies.Length)]);
+            
+        }
+        foreach(GameObject enemy in enemies_summoned)
+        {
+            load_enemy_mid_fight(enemy);
+            Debug.Log(enemy.GetComponent<EnemyStats>()._name);
+        }
+        Change_turn_order();
+
     }
 
 }

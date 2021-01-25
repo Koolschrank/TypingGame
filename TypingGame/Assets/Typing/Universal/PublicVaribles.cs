@@ -10,4 +10,5 @@ public class PublicVaribles : ScriptableObject
     public Color downColor;
     public ParticleSystem bodySwapPartical;
     public AudioClip pickUpSound;
+    public float enemyHP;
 }

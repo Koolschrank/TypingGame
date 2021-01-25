@@ -32,12 +32,17 @@ public class Backpack : MonoBehaviour
 
     public void LoadBackpackSave(string saveName)
     {
+        Backpack_Save _save = SaveSystem.loadBackpackFile(saveName);
+        if(_save == null)
+        {
+            return;
+        }
         foreach (Player_universal.Ability_Typ _at in abilities)
         {
             _at.abilities.Clear();
         }
 
-        Backpack_Save _save = SaveSystem.loadBackpackFile(saveName);
+        
 
         //AbilityFolder folder = Player_universal.Get_Ability_Folder("AllAbilities");
         LoadAbilityFolder(AllAbilities, _save.Weapons, 0);

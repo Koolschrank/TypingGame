@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -3195029682117228300}
   - component: {fileID: -4116723513017280069}
   - component: {fileID: -6024910021531459573}
+  - component: {fileID: -5908101461053068218}
   m_Layer: 0
   m_Name: TestEnemy 19
   m_TagString: Untagged
@@ -56,18 +57,16 @@ MonoBehaviour:
   UI: {fileID: 0}
   resistens: 0
   _overTimeAbilities: []
-  _buffs: []
   behaviours:
   - behaviour: 0
-    B_Value1: 0
+    B_Value1: 3
     B_Value2: 0
     condition: 1
     C_Value1: 0.5
     C_Value2: 0
     abilities:
     - {fileID: 11400000, guid: 39cbb59a23bbc0d4ea5d5bcd57b6e7bb, type: 2}
-    - {fileID: 11400000, guid: e31b502f95de65e48b4d0836eb16f31c, type: 2}
-    cooldown: 1
+    cooldown: 5
     currentCoolDown: 0
     probability: 0.5
     test_string: 
@@ -113,7 +112,7 @@ MonoBehaviour:
   defeatSound: {fileID: 8300000, guid: dd98203a28ae31c4e962b90b5e75dc7b, type: 3}
   AllAbilities: {fileID: 11400000, guid: 07b7930fb9dedce49b0bf8681c413f89, type: 2}
   p_varibles: {fileID: 11400000, guid: 5ab1a3a8dcc12894780b3a2c01fefb40, type: 2}
-  souls_drop: 50
+  souls_drop: 70
 --- !u!95 &-3195029682117228300
 Animator:
   serializedVersion: 3
@@ -199,3 +198,25 @@ MonoBehaviour:
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   damageTime: 0.2
   dead: 0
+--- !u!114 &-5908101461053068218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120678528940793525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3f760f7261e5b4d9e82afd13ddf24b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP_thresholds: []
+  the_big_boys: []
+  bigEnemies: []
+  slightyBigEnemies: []
+  enemies: []
+  smallEnemies:
+  - {fileID: 1120678528940793525, guid: 9848ccfd6422ca342ba96a791b4a8f90, type: 3}
+  - {fileID: 1120678528940793525, guid: d850645223247b843ac507daffaa4f46, type: 3}
+  - {fileID: 1120678528940793525, guid: 00684b9d5272fd04ab08a5a7c1ce885c, type: 3}
+  - {fileID: 1120678528940793525, guid: 2b8864a381c084249829145405e38826, type: 3}

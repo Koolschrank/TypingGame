@@ -27,6 +27,9 @@ public class BattleTyper : MonoBehaviour
     public bool autoMode;
     public float autoModeTime, percentageLeft, autoModeEasing =1.2f;
     float  currentTime;
+    float  testTime;
+    bool testStarted, in_typ_test;
+    int characterCount;
 
     private void Start()
     {
@@ -35,6 +38,7 @@ public class BattleTyper : MonoBehaviour
         system = FindObjectOfType<BattleSystem>();
         AB = FindObjectOfType<AudioBox>();
         AS = FindObjectOfType<AbilitySelect>();
+        if(FindObjectOfType<Settings>())
         autoMode = FindObjectOfType<Settings>().autoMode;
     }
 
@@ -43,7 +47,26 @@ public class BattleTyper : MonoBehaviour
         currentTime = 0;
     }
 
-
+    public void Start_typ_test(string _words, int _count, float time)
+    {
+        if(testStarted)
+        {
+            return;
+        }
+        in_typ_test = true;
+        var _text = Set_Random_Text(_words, _count, true, textGimmick.none);
+        currentText = _text;
+        input.readOnly = false;
+        if (input.isFocused == false)
+        {
+            input.ActivateInputField();
+        }
+        typo_made = false;
+        _position = 0;
+        activated = true;
+        testTime = time;
+        Time_slider.fillAmount=1f;
+    }
 
 
     public void Start_typing(string _words, int _count, float _time_per_character, bool _player )
@@ -124,6 +147,12 @@ public class BattleTyper : MonoBehaviour
         
     }
 
+    public void SetTestTime()
+    {
+        start_time = Time.timeSinceLevelLoad;
+        end_time = testTime;
+    }
+
     private void Update()
     {
         if(autoMode&& !activated  && AS.IsActive())
@@ -151,6 +180,7 @@ public class BattleTyper : MonoBehaviour
 
     public void CheckWithEnter()
     {
+        if(input.text.Length>0)
         input.text.Remove(input.text.Length - 1);
         input.text += " ";
         ValueChangeCheck(input.text);
@@ -159,6 +189,11 @@ public class BattleTyper : MonoBehaviour
 
     public void UpdateTimer()
     {
+        if( in_typ_test && !testStarted)
+        {
+            return;
+        }
+
         if (activated)
         {
             if(autoMode)
@@ -269,6 +304,12 @@ public class BattleTyper : MonoBehaviour
 
     public void ValueChangeCheck(string _text)
     {
+        if (in_typ_test && !testStarted)
+        {
+            testStarted = true;
+            SetTestTime();
+        }
+
         if (_text == TextChanger.Get_Characters(currentText, _position,_text.Length))
         {
             
@@ -288,6 +329,7 @@ public class BattleTyper : MonoBehaviour
 
     private void CompleteWord(string _text)
     {
+        characterCount += _text.Length;
         _position += _text.Length;
         correct_text.text += _text;
         input.text = "";
@@ -327,7 +369,19 @@ public class BattleTyper : MonoBehaviour
 
     public void EndTyping(float score, bool typos)
     {
-        if(autoMode)
+        if(in_typ_test)
+        {
+            FindObjectOfType<TestTyping>().ReturnScore(characterCount);
+            characterCount = 0;
+            testStarted = false;
+            text_field.text = "";
+            correct_text.text = "";
+            currentText = "";
+            activated = false;
+            input.readOnly = true;
+            return;
+        }
+        if (autoMode)
         {
             SetAutoTimer();
         }
@@ -351,11 +405,13 @@ public class BattleTyper : MonoBehaviour
 
     public void CompleteWordEffect()
     {
+        if(AB)
         AB.PlaySound(completeWordAudio, audioVolume);
     }
 
     public void CompleteTextEffect()
     {
+        if(AB)
         AB.PlaySound(completeTextAudio, audioVolumeFinish);
     }
 

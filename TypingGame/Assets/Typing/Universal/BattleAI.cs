@@ -20,6 +20,8 @@ public static class BattleAI
                 return condition_low_health(condition.C_Value1,enemy,condition.probability);
             case AI_condition.low_allie_health:
                 return condition_low_allie_health(condition.C_Value1, all_enemy, condition.probability);
+            case AI_condition.enemyCount:
+                return condition_enemyCount(condition.C_Value1, all_enemy, condition.probability);
         }
         return true;
     }
@@ -51,6 +53,15 @@ public static class BattleAI
         return false;
     }
 
+    public static bool condition_enemyCount(float i1, List<EnemyStats> enemies, float probability)
+    {
+        if (enemies.Count == (int)i1)
+        {
+            return Random.RandomRange(0f, 1f) <= probability;
+        }
+        return false;
+    }
+
     public static List<GameObject> FindTarget(behaviour_AI behaviour, EnemyStats enemy, List<EnemyStats> all_enemy, PlayerStats player)
     {
         behaviour.currentCoolDown = behaviour.cooldown;
@@ -72,6 +83,9 @@ public static class BattleAI
             case AI_behaviour.on_all_allies:
                 behaviour_on_all_allies(targets,all_enemy);
                 break;
+            case AI_behaviour.summon:
+                //behaviour_summon(behaviour.B_Value1, behaviour.B_Value2);
+                return null;;
         }
         return targets;
     }
@@ -92,6 +106,11 @@ public static class BattleAI
         {
             targets.Add(enemy.gameObject);
         }
+    }
+
+    public static void behaviour_summon(int count, int summonStrenght)
+    {
+        
     }
 
     public static GameObject behabiour_on_low_health_allie(List<EnemyStats> enemies)

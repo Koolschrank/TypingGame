@@ -19,7 +19,8 @@ public enum Target
     one,
     multible,
     self,
-    all
+    all,
+    summon
 }
 
 public enum ability_typ
@@ -80,7 +81,8 @@ public enum AI_behaviour
     on_low_health_allie,
     on_allie,
     on_random_allie,
-    on_all_allies
+    on_all_allies,
+    summon
 }
 
 public enum AI_condition
@@ -88,6 +90,7 @@ public enum AI_condition
     nothing,
     low_health,
     low_allie_health,
+    enemyCount
 }
 
 public enum Element
@@ -146,7 +149,7 @@ public enum passiveSkill
     itemBoost, // items 50%better when no typo
     Mp_to_HP, // gain Hp by using MP Skills
     Undead, // takes damage trough any kind of healing
-    big_brain, // 30% more Magic damage but 40% moreCost
+    big_brain, // 30% more Magic damage but 50% moreCost
 }
 
 public enum state
@@ -192,4 +195,27 @@ public enum stat_lv
     hp_cost,
     magic_slots,
     item_slots,
+}
+
+public enum CurrentMenu
+{
+    saveFile,
+    action,
+    optiones,
+    delete
+}
+
+public enum MainMenuOptiones
+{
+    closed,
+    opened,
+    in_closing,
+    in_opening
+}
+
+public enum NewGameSettings
+{
+    start_test,
+    in_test,
+    set_optiones
 }

@@ -20,6 +20,7 @@ public class EnemyStats : MonoBehaviour
     public behaviour_AI[] behaviours;
     public ElementalEffectiveness[] elements;
     public AudioClip defeatSound;
+    int positionInt;
 
     bool defeated, onGround;
     public AbilityFolder AllAbilities;
@@ -30,6 +31,7 @@ public class EnemyStats : MonoBehaviour
 
     private void Start()
     {
+        hp_max = (int)((float)hp_max * p_varibles.enemyHP);
         hp = hp_max;
         _system = FindObjectOfType<BattleSystem>();
         shaker = FindObjectOfType<ScreenShake>();
@@ -43,6 +45,8 @@ public class EnemyStats : MonoBehaviour
         if (!UI.showStats) return;
         UI.defence.text = defence.ToString();
         UI.resistance.text = resistance.ToString();
+        UI.slider.maxValue = hp_max;
+        UI.slider.value = hp;
     }
 
     private void Update()
@@ -208,6 +212,11 @@ public class EnemyStats : MonoBehaviour
         {
             if ( BattleAI.CheckCondition(behaviour, this, _system.enemies))
             {
+                if(behaviour.behaviour == AI_behaviour.summon)
+                {
+                    _system.Enemy_Summons((int)behaviour.B_Value1, GetComponent<EnemySummon>().GetEnemyArray((int)behaviour.B_Value2));
+                    return;
+                }
                 currentAbility = behaviour.abilities[Random.Range(0, behaviour.abilities.Length)];
                 currentAbility.Set_enemy_target(BattleAI.FindTarget(behaviour, this, _system.enemies, FindObjectOfType<PlayerStats>()));
                 currentAbility.SetUser(gameObject);
@@ -385,7 +394,7 @@ public class EnemyStats : MonoBehaviour
 
     public void ApplyBuff(Effects.Buff buff, int add)
     {
-        if(buff.Name =="")
+        if(buff.Name =="" || buff.Name == null)
         {
             return;
         }
@@ -413,6 +422,17 @@ public class EnemyStats : MonoBehaviour
     public void RemoveEnemy()
     {
         Destroy(this.gameObject);
+    }
+
+    public void SetPosition(int i)
+    {
+        positionInt = i;
+    }
+
+
+    public int GetPosition()
+    {
+        return positionInt;
     }
 
 }

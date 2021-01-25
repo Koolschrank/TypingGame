@@ -5,7 +5,7 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
     public GameObject textPopUP;
-    bool onCheckpoint;
+    bool onCheckpoint, checked_bool;
 
     private void Start()
     {
@@ -14,13 +14,15 @@ public class CheckPoint : MonoBehaviour
 
     private void Update()
     {
-        if(onCheckpoint && Input.GetKeyDown("space"))
+        if(onCheckpoint && Input.GetKeyDown("space")&& !checked_bool)
         {
+            checked_bool = true;
             Debug.Log("whaat");
             FindObjectOfType<PlayerStats>().RefillStats();
             var ST = FindObjectOfType<SceneTransitioner>();
             //ST.onCheckPoint = true;
-            ST.Save_Game(0);
+            ST.Save_Game(FindObjectOfType<Settings>().currentSave);
+            ST.LoadSaveFile(FindObjectOfType<Settings>().currentSave);
             ST.LoadGameFile();
         }
     }

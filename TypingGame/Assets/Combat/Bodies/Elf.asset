@@ -20,7 +20,7 @@ MonoBehaviour:
   defence: 4
   resistance: 5
   abilities:
-  - {fileID: 11400000, guid: 6ce0cb3fca68be740887fb850b3f4e22, type: 2}
+  - {fileID: 11400000, guid: ff2a7ec384b2e3e40b2d7803fc40b9da, type: 2}
   - {fileID: 11400000, guid: 9aeebf28cecf8c34c97de480db11bfad, type: 2}
   - {fileID: 11400000, guid: fd8f235f217829343aaf6f6f425de16d, type: 2}
   - {fileID: 11400000, guid: 5c258957ec497da4d8b7f6615f46a6aa, type: 2}

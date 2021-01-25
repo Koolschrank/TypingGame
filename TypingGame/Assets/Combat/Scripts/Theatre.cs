@@ -28,10 +28,20 @@ public class Theatre : MonoBehaviour
         }
     }
 
+    public void AddEnemy(EnemyStats _enemy)
+    {
+        enemies.Add(_enemy.gameObject);
+    }
+
+    public void InsertEnemy(int i,EnemyStats _enemy)
+    {
+        enemies.Insert(i,_enemy.gameObject);
+    }
+
     private void Update()
     {
-        if (_moves.Count == 0) return; 
-        foreach(PositionMover _move in _moves)
+        if (_moves.Count == 0) return;
+        foreach (PositionMover _move in _moves)
         {
             if (_move.walking)
             _move._character.transform.position = Vector2.MoveTowards(_move._character.transform.position, _move.end_position, _move.speed*Time.deltaTime);

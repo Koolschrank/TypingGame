@@ -16,13 +16,10 @@ MonoBehaviour:
   sprite: {fileID: 4597055960647571741, guid: 03a31101566f544428d0c4ed51490a35, type: 3}
   animaton: {fileID: 22100000, guid: 151650833f58b0e42ad0794ca1ecca55, type: 2}
   strenght: 0
-  intellect: 8
+  intellect: 9
   defence: 2
   resistance: 5
-  abilities:
-  - {fileID: 11400000, guid: 8ee9ac10dd82a7045ab9807b455a2c52, type: 2}
-  - {fileID: 11400000, guid: 2d79795fdff558849a45bfe4d7dfd9ed, type: 2}
-  - {fileID: 11400000, guid: 1d96d79cabeff2a4cbafaaa7fc237260, type: 2}
+  abilities: []
   fire: 0
   ice: 0
   thunder: 0

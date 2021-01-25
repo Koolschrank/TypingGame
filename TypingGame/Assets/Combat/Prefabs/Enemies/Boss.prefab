@@ -1,0 +1,233 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1120678528940793525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1120678528940793523}
+  - component: {fileID: 1120678528940793524}
+  - component: {fileID: -3195029682117228300}
+  - component: {fileID: -4116723513017280069}
+  - component: {fileID: -6024910021531459573}
+  - component: {fileID: -246267451219874120}
+  m_Layer: 0
+  m_Name: Boss
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1120678528940793523
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120678528940793525}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1120678528940793524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120678528940793525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79fd27c2c771c04488755f34cb1b962a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: Bad Boy
+  hp_max: 300
+  hp: 0
+  strenght: 0
+  intellect: 5
+  defence: 0
+  resistance: 0
+  UI: {fileID: 0}
+  resistens: 0
+  _overTimeAbilities: []
+  behaviours:
+  - behaviour: 6
+    B_Value1: 3
+    B_Value2: 0
+    condition: 3
+    C_Value1: 1
+    C_Value2: 0
+    abilities: []
+    cooldown: 0
+    currentCoolDown: 0
+    probability: 1
+    test_string: Heal
+  - behaviour: 6
+    B_Value1: 2
+    B_Value2: 1
+    condition: 3
+    C_Value1: 2
+    C_Value2: 0
+    abilities: []
+    cooldown: 0
+    currentCoolDown: 0
+    probability: 1
+    test_string: Heal
+  - behaviour: 6
+    B_Value1: 1
+    B_Value2: 2
+    condition: 3
+    C_Value1: 3
+    C_Value2: 0
+    abilities: []
+    cooldown: 0
+    currentCoolDown: 0
+    probability: 1
+    test_string: Heal
+  - behaviour: 0
+    B_Value1: 0
+    B_Value2: 0
+    condition: 0
+    C_Value1: 0
+    C_Value2: 0
+    abilities:
+    - {fileID: 11400000, guid: 11f80f7570ab4724489b473b02d5839b, type: 2}
+    cooldown: 0
+    currentCoolDown: 0
+    probability: 1
+    test_string: Heal
+  elements: []
+  defeatSound: {fileID: 8300000, guid: dd98203a28ae31c4e962b90b5e75dc7b, type: 3}
+  AllAbilities: {fileID: 11400000, guid: 07b7930fb9dedce49b0bf8681c413f89, type: 2}
+  p_varibles: {fileID: 11400000, guid: 5ab1a3a8dcc12894780b3a2c01fefb40, type: 2}
+  souls_drop: 28
+--- !u!95 &-3195029682117228300
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120678528940793525}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: df81da7a827d654409e3dd684126c243, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!212 &-4116723513017280069
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120678528940793525}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -1046484783844769108, guid: 29152ed9d0449514d934f7471526571a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!114 &-6024910021531459573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120678528940793525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2d71937bb20fe6458326c3de74c1a18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  damageTime: 0.2
+  dead: 0
+--- !u!114 &-246267451219874120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120678528940793525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3f760f7261e5b4d9e82afd13ddf24b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP_thresholds:
+  - 0.8
+  - 0.4
+  - 0.2
+  the_big_boys:
+  - {fileID: 1120678528940793525, guid: be14c91a7192f3c409088995f0c73784, type: 3}
+  - {fileID: 1120678528940793525, guid: a323a3895b2d525469f7d65d4f11e865, type: 3}
+  bigEnemies:
+  - {fileID: 1120678528940793525, guid: 782b3c3f767b869408f22518d09ba70d, type: 3}
+  - {fileID: 1120678528940793525, guid: f3f4abc41b8f3cf4280e3590dc2de5d5, type: 3}
+  - {fileID: 1120678528940793525, guid: 3a96fc09101bc16499c42fbc5476d8c3, type: 3}
+  slightyBigEnemies:
+  - {fileID: 1120678528940793525, guid: e188dfdb6a945a446801819d37e8461a, type: 3}
+  - {fileID: 1120678528940793525, guid: 5aa63ad4657d41b40a0065c3e493bc5f, type: 3}
+  - {fileID: 1120678528940793525, guid: 3c604bf136aee974dba0e57733cb66df, type: 3}
+  - {fileID: 1120678528940793525, guid: 1510f5a8ab4a56844b83bafb82744a66, type: 3}
+  enemies:
+  - {fileID: 1120678528940793525, guid: 32861887bc616634aa716345b6b58586, type: 3}
+  - {fileID: 1120678528940793525, guid: 2b8864a381c084249829145405e38826, type: 3}
+  - {fileID: 1120678528940793525, guid: cf98278bc4c5e4c4492e62a67ca84ed8, type: 3}
+  - {fileID: 1120678528940793525, guid: ceea8e02bbdc22f4e9fe0fce5ae13586, type: 3}
+  smallEnemies:
+  - {fileID: 1120678528940793525, guid: 9848ccfd6422ca342ba96a791b4a8f90, type: 3}
+  - {fileID: 1120678528940793525, guid: d850645223247b843ac507daffaa4f46, type: 3}
+  - {fileID: 1120678528940793525, guid: 00684b9d5272fd04ab08a5a7c1ce885c, type: 3}
+  - {fileID: 1120678528940793525, guid: ae842cb454aa60543b43ab288eea367e, type: 3}

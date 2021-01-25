@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Monk
   m_EditorClassIdentifier: 
   _name: Monk
-  sprite: {fileID: -6737360712338713590, guid: 03a31101566f544428d0c4ed51490a35, type: 3}
-  animaton: {fileID: 22100000, guid: 75e8f858707b63c4eac574ffd8efac36, type: 2}
+  sprite: {fileID: 2756882848282315893, guid: 3343f9f930529cb48aeb187b44872d69, type: 3}
+  animaton: {fileID: 22100000, guid: 0bb6da61127b865488f7bd472be68839, type: 2}
   strenght: 3
   intellect: 5
   defence: 3
@@ -26,4 +26,4 @@ MonoBehaviour:
   ice: 1
   thunder: 1
   passiveSkills: 0000000006000000
-  info: MP cinsuming skills fill your HP by the amount of MP they cost
+  info: MP consuming skills fill your HP by the amount of MP they cost

@@ -102,6 +102,7 @@ public class BackpackMenu : MonoBehaviour
         }
         if (ability._cost_typ == Cost.consumable)
         {
+            item.headList.displays[item.index].Select(false);
             item.headList.abilities[item.index]= null;
             UpdateUI();
             //SelectedFolder_p.abilities.Remove(ability);
@@ -149,6 +150,8 @@ public class BackpackMenu : MonoBehaviour
 
     public void Add(SelectedItem newItem, SelectedItem emptySlot)
     {
+        newItem.headList.displays[newItem.index].Select(false);
+        emptySlot.headList.displays[emptySlot.index].Select(false);
         Ability ability = newItem.headList.abilities[newItem.index];
         emptySlot.headList.abilities.Add(ability);
         newItem.headList.abilities[newItem.index] = null;
@@ -205,6 +208,8 @@ public class BackpackMenu : MonoBehaviour
 
     public void SwapAbility(SelectedItem item1, SelectedItem item2)
     {
+        item1.headList.displays[item1.index].Select(false);
+        item2.headList.displays[item2.index].Select(false);
         if (item1.headList.abilities[item1.index] ==null)
         {
             SwapWithEmpty(item1, item2);
@@ -378,6 +383,7 @@ public class BackpackMenu : MonoBehaviour
             case currentSelection.selectAction:
                 PBUI.SetVisible(false);
                 ASUI.SetVisible(false);
+                currentItem.headList.displays[currentItem.index].Select(false);
                 currentItem = null;
                 selectTyp = currentSelection.selectAbility;
                 break;
@@ -404,8 +410,9 @@ public class BackpackMenu : MonoBehaviour
 
     public void CloseMenu()
     {
+
+
         AB.PlaySound(closeMenu, 1);
-        Debug.Log("happuns");
         switch (currenAbilityTyp)
         {
             case state.inWeapon:
@@ -431,7 +438,6 @@ public class BackpackMenu : MonoBehaviour
                 player.SetBody(player.playerBodies[ player.currentBody]);
                 break;
         }
-        Debug.Log("happuns2");
         FindObjectOfType<BackPackControle>().BackToMainMenu(currenAbilityTyp);
     }
 
@@ -441,7 +447,6 @@ public class BackpackMenu : MonoBehaviour
 
         var PL = player.Ability_typs[playerList];
         PL.abilities.Clear();
-        Debug.Log(PL._name);
         foreach (Ability ability in list.abilities)
         {
             if(ability != null)
@@ -490,6 +495,7 @@ public class BackpackMenu : MonoBehaviour
         {
             if(selectTyp == currentSelection.selectAbility)
             {
+                abilitieLists_u[currentList].displays[cItem.index].Select(true);
                 GoToAdd(cItem);
                 return;
             }
@@ -509,6 +515,7 @@ public class BackpackMenu : MonoBehaviour
         {
             if (selectTyp == currentSelection.selectAbility)
             {
+                abilitieLists_u[currentList].displays[cItem.index].Select(true);
                 currentItem = cItem;
                 GoToSwap();
                 return;
@@ -529,6 +536,7 @@ public class BackpackMenu : MonoBehaviour
         switch (selectTyp)
         {
             case currentSelection.selectAbility:
+                abilitieLists_u[currentList].displays[cItem.index].Select(true);
                 ItemSelected(cItem);
                 break;
             case currentSelection.selectAction:
@@ -565,6 +573,7 @@ public class BackpackMenu : MonoBehaviour
 
     public void CreateLists(Player_universal.Ability_Typ playerSlots, Player_universal.Ability_Typ backpackSlots)
     {
+        currentList = 0;
         abilitieLists_u.Clear();
         abilitieLists[0].SetAbilities(playerSlots.abilities, playerSlots.slots);
         abilitieLists_u.Add(abilitieLists[0]);
@@ -601,6 +610,7 @@ public class BackpackMenu : MonoBehaviour
 
     public void CreateBodyLists(List<PlayerBody> playerSlots, List<PlayerBody> backpackSlots)
     {
+        currentList = 0;
         abilitieLists_u.Clear();
         var playerBodyList = CreateList(playerSlots, 4);
         var backpackBodyList = CreateList(backpackSlots, backpackSlots.Count);
@@ -639,6 +649,7 @@ public class BackpackMenu : MonoBehaviour
 
     public Player_universal.Ability_Typ CreateList(List<PlayerBody> bodies, int slots)
     {
+        currentList = 0;
         Player_universal.Ability_Typ newList = new Player_universal.Ability_Typ();
         newList.slots = slots;
         List<Ability> abilityList = new List<Ability>();
@@ -704,3 +715,5 @@ public class SelectedItem
     public AbilityUIList headList;
     public int index;
 }
+
+
