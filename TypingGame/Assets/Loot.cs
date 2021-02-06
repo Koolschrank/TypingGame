@@ -49,6 +49,7 @@ public class Loot : MonoBehaviour
                 break;
             case LootTyp.item:
                 Add_Ability(player, 3);
+                Add_Ability(player, 4);
                 break;
         }
         open = true;

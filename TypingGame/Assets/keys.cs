@@ -6,6 +6,13 @@ public class keys : MonoBehaviour
 {
     public int key;
 
+    private void Start()
+    {
+        if(GetComponent<SaveableObject>().inGame == false)
+        {
+            SetOff();
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -14,6 +21,13 @@ public class keys : MonoBehaviour
             var player = collision.gameObject.GetComponent<PlayerStats>();
             player.keys[key] = true;
             Debug.Log("pick up");
+            GetComponent<SaveableObject>().inGame = false;
+            SetOff();
         }
+    }
+
+    public void SetOff()
+    {
+        GetComponent<SpriteRenderer>().enabled = false;
     }
 }

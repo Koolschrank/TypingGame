@@ -20,6 +20,8 @@ public class BattleTyper : MonoBehaviour
     PlayerStats player;
     BattleSystem system;
     AbilitySelect AS;
+    AbilityName AN;
+    Settings settings;
     public AudioClip completeWordAudio, completeTextAudio;
     public float audioVolume=0.5f, audioVolumeFinish =0.7f;
     [TextArea]
@@ -33,7 +35,9 @@ public class BattleTyper : MonoBehaviour
 
     private void Start()
     {
+        AN = FindObjectOfType<AbilityName>();
         player = FindObjectOfType<PlayerStats>();
+        settings = FindObjectOfType<Settings>();
         input.onValueChange.AddListener(delegate { ValueChangeCheck(input.text); });
         system = FindObjectOfType<BattleSystem>();
         AB = FindObjectOfType<AudioBox>();
@@ -75,6 +79,17 @@ public class BattleTyper : MonoBehaviour
         //{
         //    EndTyping(0.1f, false);
         //}
+        if(settings)
+        {
+            if(settings.doublWordCount)
+            {
+                _count += _count;
+            }
+        }
+        if (AN)
+        {
+            AN.SetAbility(system.GetCurrentAbility());
+        }
         fromPlayer = _player;
 
         var _text = Set_Random_Text(_words, _count, fromPlayer, textGimmick.none);
@@ -93,14 +108,23 @@ public class BattleTyper : MonoBehaviour
         
     }
 
-    public void Start_typing(string _words, int _count, float _time_per_character, bool _player, textGimmick gimmick)
+    public void Start_typing(string _words, int _count, float _time_per_character, bool _player, textGimmick gimmick, Ability ability)
     {
         //if(noTyping)
         //{
         //    EndTyping(0.1f, false);
         //}
-
-
+        if (settings)
+        {
+            if (settings.doublWordCount)
+            {
+                _count += _count;
+            }
+        }
+        if (AN)
+        {
+            AN.SetAbility(ability);
+        }
         fromPlayer = _player;
 
         var _text = Set_Random_Text(_words, _count, fromPlayer, gimmick);
@@ -120,8 +144,8 @@ public class BattleTyper : MonoBehaviour
 
     public void StartTimer(string _text,float _time_per_character, bool _player)
     {
-        Settings settings = FindObjectOfType<Settings>();
         start_time = Time.timeSinceLevelLoad;
+
         if(_player)
         {
             if(autoMode)
@@ -384,6 +408,11 @@ public class BattleTyper : MonoBehaviour
         if (autoMode)
         {
             SetAutoTimer();
+        }
+
+        if (AN)
+        {
+            AN.SetVisible(false);
         }
 
         if (fromPlayer)

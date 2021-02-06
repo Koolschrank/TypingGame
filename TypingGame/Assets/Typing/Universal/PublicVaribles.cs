@@ -12,3 +12,6 @@ public class PublicVaribles : ScriptableObject
     public AudioClip pickUpSound;
     public float enemyHP;
 }
+
+
+

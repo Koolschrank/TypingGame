@@ -41,7 +41,7 @@ public class TestTyping : MonoBehaviour
             if (Input.GetKeyDown("2"))
             {
                 var currentSaveSettings = SaveSystem.LordSettings("/checkpoint_SettingsSave.test" + FindObjectOfType<SettingsSave>().saveFile);
-                SaveSystem.OverrideSettings(FindObjectOfType<SettingsSave>().startString.ToString(), "/checkpoint_SettingsSave.test" + FindObjectOfType<SettingsSave>().saveFile.ToString(), WPM, false);
+                SaveSystem.OverrideSettings(FindObjectOfType<SettingsSave>().startString.ToString(), "/checkpoint_SettingsSave.test" + FindObjectOfType<SettingsSave>().saveFile.ToString(), WPM, false,false);
                 SceneManager.LoadScene(FindObjectOfType<SettingsSave>().startString);
             }
         }

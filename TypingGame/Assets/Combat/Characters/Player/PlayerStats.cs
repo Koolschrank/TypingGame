@@ -29,6 +29,7 @@ public class PlayerStats : MonoBehaviour
     public PublicVaribles p_varibles;
     public int level, souls, levelUP_startCost, levelUP_levelAdditionCost, level_health, level_magic, level_capability;
     public bool[] keys;
+    
 
 
 
@@ -159,6 +160,16 @@ public class PlayerStats : MonoBehaviour
         FindObjectOfType<AbilitySelect>().UpdateSlider();
     }
 
+    public void RefillHalfStats()
+    {
+        hp = Mathf.Min(hp_max, hp + (int)(hp_max / 2));
+        mp = Mathf.Min(mp_max, mp + (int)(mp_max / 2));
+        sp = sp_max;
+        //RefillItems();
+        if (FindObjectOfType<AbilitySelect>())
+            FindObjectOfType<AbilitySelect>().UpdateSlider();
+    }
+
     public void RefillItems()
     {
         Ability_typs[3].abilities.Clear();
@@ -282,7 +293,7 @@ public class PlayerStats : MonoBehaviour
                 
                 if (CheckForPassiv(passiveSkill.Mp_to_HP))
                 {
-                    Heal(currentAbility._cost);
+                    Heal(currentAbility._cost,false);
                 }
                 
                 UI.UpdateSlider();
@@ -358,10 +369,10 @@ public class PlayerStats : MonoBehaviour
                 Take_damage(power, ability, score);
                 break;
             case ability_typ.heal:
-                Heal(power);
+                Heal(power,false);
                 break;
             case ability_typ.item_heal:
-                Heal(power);
+                Heal(power,false);
                 break;
             case ability_typ.mp_heal:
                 MPHeal(power);
@@ -417,7 +428,7 @@ public class PlayerStats : MonoBehaviour
                 Take_damage(power, ability, score);
                 break;
             case ability_typ.heal:
-                Heal(power);
+                Heal(power,false);
                 break;
         }
     }
@@ -461,7 +472,7 @@ public class PlayerStats : MonoBehaviour
                 phenix_used = true;
                 mp = Mathf.Max(0, mp - 10);
                 hp = 0;
-                Heal(hp_max / 2);
+                Heal(hp_max / 2, false);
             }
             else
             {
@@ -496,7 +507,7 @@ public class PlayerStats : MonoBehaviour
                 phenix_used = true;
                 mp = Mathf.Max(0, mp - 10);
                 hp = 0;
-                Heal(hp_max / 2);
+                Heal(hp_max / 2, false);
             }
             else
             {
@@ -546,7 +557,7 @@ public class PlayerStats : MonoBehaviour
                 return 0;
             case Effectiveness.absorb:
                 Create_weakness_text("ABSORB");
-                Heal(damage -resistance);
+                Heal((int)(damage /1.5f), true);
                 return 0;
             default:
                 return damage;
@@ -597,9 +608,9 @@ public class PlayerStats : MonoBehaviour
         _heal_text.GetComponentInChildren<TextMesh>().text = Mathf.Max(0, _number).ToString();
     }
 
-    public void Heal(int heal)
+    public void Heal(int heal, bool absorb)
     {
-        if (CheckForPassiv(passiveSkill.Undead))
+        if (CheckForPassiv(passiveSkill.Undead) && !absorb)
         {
             Take_damage(heal);
             return;

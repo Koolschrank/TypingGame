@@ -18,9 +18,9 @@ MonoBehaviour:
   strenght: 4
   intellect: 6
   defence: 4
-  resistance: 2
+  resistance: 4
   abilities:
-  - {fileID: 11400000, guid: fc0294cf52e04e84bb611a4fa2c9555c, type: 2}
+  - {fileID: 11400000, guid: 51e13f1d2794cc746afa60317362e68b, type: 2}
   - {fileID: 11400000, guid: 03126597618307f4dad5fe5cf8dae8de, type: 2}
   - {fileID: 11400000, guid: 729223ede9d79544f8268c5968b160b1, type: 2}
   - {fileID: 11400000, guid: 70dd81a3eb9159a408adc8ab89fd13ca, type: 2}
@@ -29,4 +29,4 @@ MonoBehaviour:
   ice: 2
   thunder: 0
   passiveSkills: 0000000007000000
-  info: Takes damage from any kind of healing
+  info: Takes damage from healing spells and items.

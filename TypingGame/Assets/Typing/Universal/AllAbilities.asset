@@ -71,6 +71,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9e78f076cc4ed5c4fb5061702b5ed1af, type: 2}
   - {fileID: 11400000, guid: e93097f95111aa84f8ed2e9e3f4dbe03, type: 2}
   - {fileID: 11400000, guid: 6cf8db82d0e5ee04ab8f7311352f4f94, type: 2}
+  - {fileID: 11400000, guid: d0aa17f8db351ce4b8a0bde678eccda3, type: 2}
+  - {fileID: 11400000, guid: 2db131de2c972ac47856a8f278669d25, type: 2}
+  - {fileID: 11400000, guid: 9914b90543aaae84496907cc89bfc947, type: 2}
+  - {fileID: 11400000, guid: 9914b90543aaae84496907cc89bfc947, type: 2}
+  - {fileID: 11400000, guid: 9914b90543aaae84496907cc89bfc947, type: 2}
   - {fileID: 11400000, guid: 9914b90543aaae84496907cc89bfc947, type: 2}
   - {fileID: 11400000, guid: 9914b90543aaae84496907cc89bfc947, type: 2}
   playerBodies:
@@ -155,7 +160,7 @@ MonoBehaviour:
   - Name: Shild
     stats:
     - stat: 2
-      power: 10
+      power: 7
     turnsLeft: 0
   - Name: Fire Null
     stats:

@@ -5,11 +5,15 @@ using UnityEngine;
 public class door : MonoBehaviour
 {
     public int keyNunber;
+    public Sprite open, closed;
+    SpriteRenderer sprite;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        sprite = GetComponent<SpriteRenderer>();
+
+        sprite.sprite = closed;
     }
 
     // Update is called once per frame
@@ -36,6 +40,7 @@ public class door : MonoBehaviour
 
     public void OpenDoor()
     {
+        sprite.sprite = open;
         Debug.Log("open");
         GetComponent<Collider2D>().enabled = false;
     }

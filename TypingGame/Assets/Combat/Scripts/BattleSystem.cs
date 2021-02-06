@@ -428,7 +428,7 @@ public class BattleSystem : MonoBehaviour
         {
             if (target.GetComponent<PlayerStats>())
             {
-                FindObjectOfType<BattleTyper>().Start_typing(_ability._words, _ability._word_count, _ability.time_per_character, false, _ability.gimmick);
+                FindObjectOfType<BattleTyper>().Start_typing(_ability._words, _ability._word_count, _ability.time_per_character, false, _ability.gimmick, _ability);
                 toPlayer = true;
             }
             else
@@ -833,6 +833,11 @@ public class BattleSystem : MonoBehaviour
         }
         Change_turn_order();
 
+    }
+
+    public Ability GetCurrentAbility()
+    {
+        return _current_ability;
     }
 
 }

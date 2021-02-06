@@ -31,6 +31,7 @@ public class Settings : MonoBehaviour
         _scene = _save.scene;
         WPM = _save.WPM;
         autoMode = _save.autoMode;
+        doublWordCount = _save.doubleWords;
         
     }
 

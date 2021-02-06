@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MenuTextEdit : MonoBehaviour
 {
-    public Text FileNameText, deleteInfoText, WPM, autoMode,gameStartText, optionesText, deleteText;
+    public Text FileNameText, deleteInfoText, WPM, autoMode,doubleWords,gameStartText, optionesText, deleteText;
 
 
     public void SetFileName(string fileName)
@@ -34,6 +34,19 @@ public class MenuTextEdit : MonoBehaviour
             autoMode.text = "Auto-mode off";
         }
         
+    }
+
+    public void SetDoubleWordMode(bool b)
+    {
+        if (b)
+        {
+            doubleWords.text = "double words on";
+        }
+        else
+        {
+            doubleWords.text = "double words off";
+        }
+
     }
 
     public void SetActionUI(bool b)

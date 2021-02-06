@@ -55,6 +55,7 @@ public class BackPackControle : MonoBehaviour
             
             if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown((KeyCode.Backspace))))
             {
+                FindObjectOfType<StatsInLevel>().UpdateUI();
                 AB.PlaySound(closeMenu, 1);
                 StartCoroutine(StartDelay());
                 CloseTransition();

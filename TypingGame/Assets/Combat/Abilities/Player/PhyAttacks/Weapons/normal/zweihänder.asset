@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: "zweih\xE4nder"
   m_EditorClassIdentifier: 
   _name: zweihander
-  _words: Bratwurst Emmentaler schadenfreude zeitgeist doppelganger gesundheit kindergarten
+  _words: Bratwurst Emmentaler Schadenfreude Zeitgeist Doppelganger gesundheit Kindergarten
     Oktoberfest Zeppelin
   _word_count: 2
   time_per_character: 1
   gimmick: 0
   _cost_typ: 1
-  _cost: 6
+  _cost: 8
   power: 8
   stat_strenght: 1
   _typ: 0

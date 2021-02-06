@@ -114,25 +114,25 @@ public class SaveSystem : MonoBehaviour
         stream.Close();
     }
 
-    public static void OverrideSettings(Settings_save oldSettings, string savePostion, float WPM, bool autoMode)
+    public static void OverrideSettings(Settings_save oldSettings, string savePostion, float WPM, bool autoMode, bool doubleWords)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + savePostion;
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        Settings_save data = new Settings_save(oldSettings, WPM, autoMode);
+        Settings_save data = new Settings_save(oldSettings, WPM, autoMode, doubleWords);
 
         formatter.Serialize(stream, data);
         stream.Close();
     }
 
-    public static void OverrideSettings(string newString, string savePostion, float WPM, bool autoMode)
+    public static void OverrideSettings(string newString, string savePostion, float WPM, bool autoMode, bool doubleWords)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + savePostion;
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        Settings_save data = new Settings_save(newString, WPM, autoMode);
+        Settings_save data = new Settings_save(newString, WPM, autoMode, doubleWords);
 
         formatter.Serialize(stream, data);
         stream.Close();

@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour
     //Optiones
     public float WPM_steps;
     public float WPM;
-    public bool automode;
+    public bool automode ,doubleWords;
 
 
     void Start()
@@ -100,7 +100,8 @@ public class MainMenu : MonoBehaviour
         }
         if (Input.GetKeyDown("3"))
         {
-
+            doubleWords = !doubleWords;
+            MTE.SetDoubleWordMode(doubleWords);
         }
 
         if (Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Escape))
@@ -160,7 +161,7 @@ public class MainMenu : MonoBehaviour
 
     public void ReturnSelectOptions()
     {
-        SaveSystem.OverrideSettings(currentSaveSettings, "/checkpoint_SettingsSave.test" + saveFileInt.ToString(), WPM, automode);
+        SaveSystem.OverrideSettings(currentSaveSettings, "/checkpoint_SettingsSave.test" + saveFileInt.ToString(), WPM, automode, doubleWords);
         canPushButtons = false;
         currentSaveSettings = SaveSystem.LordSettings("/checkpoint_SettingsSave.test" + saveFileInt);
         a.CloseOptiones();

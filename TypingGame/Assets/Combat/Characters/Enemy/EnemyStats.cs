@@ -93,7 +93,7 @@ public class EnemyStats : MonoBehaviour
         if (Effects.Check_for_effect(attack_stats.effect_array, effects.absorb) != null)
         {
             var effect_stats = Effects.Check_for_effect(attack_stats.effect_array, effects.absorb);
-            FindObjectOfType<PlayerStats>().Heal(Effects.Absorb(Mathf.Min(hp, damage), effect_stats.value1));
+            FindObjectOfType<PlayerStats>().Heal(Effects.Absorb(Mathf.Min(hp, damage), effect_stats.value1),true);
         }
         if(Effects.Check_for_effect(attack_stats.effect_array, effects.oneShotBoost) != null)
         {
@@ -114,6 +114,7 @@ public class EnemyStats : MonoBehaviour
         UI.hp_text.text = hp.ToString() + "/" + hp_max.ToString();
         if (hp <= 0)
         {
+            showXPNumber(souls_drop);
             Defeated(attack_stats);
             shaker.ShakeCam(shake.big);
         }
@@ -190,6 +191,13 @@ public class EnemyStats : MonoBehaviour
         _damage_text.GetComponentInChildren<TextMesh>().text = Mathf.Max(0,_number).ToString();
     }
 
+    public void showXPNumber(int _number)
+    {
+        Vector3 TP = transform.position;
+        GameObject _damage_text = Instantiate(_system.XPText,new Vector3(TP.x,TP.y+1, TP.z), transform.rotation) as GameObject;
+        _damage_text.GetComponentInChildren<TextMesh>().text = Mathf.Max(0, _number).ToString();
+    }
+
     public void showHealNumber(int _number)
     {
         GameObject _heal_text = Instantiate(_system.HealText, transform.position, transform.rotation) as GameObject;
@@ -233,6 +241,19 @@ public class EnemyStats : MonoBehaviour
         {
             if (_effect.effect == effects.effect_over_time)
             {
+                int toDelete = -1;
+                foreach(Effects.over_time_ability OTA_ in _overTimeAbilities)
+                {
+                    if(ability._name == OTA_._ability._name)
+                    {
+                        toDelete =_overTimeAbilities.IndexOf(OTA_);
+                        break;
+                    }
+                }
+                if(toDelete != -1)
+                {
+                    _overTimeAbilities.RemoveAt(toDelete);
+                }
                 _overTimeAbilities.Add(Effects.Create_over_time_ability(power, ability));
             }
             else if(_effect.effect == effects.buff)

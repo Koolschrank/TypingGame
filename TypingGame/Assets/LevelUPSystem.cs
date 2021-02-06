@@ -30,6 +30,7 @@ public class LevelUPSystem : MonoBehaviour
         SetSouls();
         if(active)
         {
+            FindObjectOfType<BackpackMenu>().pageNumberText.text = "";
             SetStatLevelUI();
             SetStartingLevel();
         }

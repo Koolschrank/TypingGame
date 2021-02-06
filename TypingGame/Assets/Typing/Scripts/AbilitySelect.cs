@@ -191,7 +191,7 @@ public class AbilitySelect : MonoBehaviour
         ASUI.SetVisible(false);
         input.text = "";
         FindObjectOfType<BattleSystem>().Next_turn();
-        FindObjectOfType<BattleTyper>().Start_typing(ability._words, ability._word_count, ability.time_per_character, true, ability.gimmick);
+        FindObjectOfType<BattleTyper>().Start_typing(ability._words, ability._word_count, ability.time_per_character, true, ability.gimmick, ability);
         player.Set_Ability(ability);
         activated = false;
     }

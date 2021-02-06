@@ -24,7 +24,7 @@ MonoBehaviour:
   gimmick: 0
   _cost_typ: 3
   _cost: 0
-  power: 10
+  power: 20
   stat_strenght: 1
   _typ: 6
   _element: 5

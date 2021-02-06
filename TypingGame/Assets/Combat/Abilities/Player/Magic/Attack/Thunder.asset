@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: Thunder
   m_EditorClassIdentifier: 
   _name: data-bolt
-  _words: if else case swich for foreach true false int float bool void public private
+  _words: if else case switch for foreach true false int float bool void public private
     enum array list debug helloWorld syntax do while static null empty error data
     lenght type value this return class break continue
   _word_count: 4
   time_per_character: 1
+  gimmick: 0
   _cost_typ: 2
   _cost: 4
-  power: 12
+  power: 10
   stat_strenght: 1
   _typ: 1
   _element: 3
@@ -29,6 +30,8 @@ MonoBehaviour:
   _sprite_object: {fileID: 0}
   Impact_object: {fileID: 7810009366253378566, guid: addd3d524cc9588429952e3756ba689a, type: 3}
   impact_size: 1
+  castSound: {fileID: 0}
+  soundVolume: 1
   _info: 
   effect_array: []
   menuIcon: {fileID: 21300000, guid: 72658bb96408efe4e8efc77ede0eda58, type: 3}

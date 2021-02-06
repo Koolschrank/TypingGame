@@ -278,26 +278,29 @@ public class Settings_save
 {
     public string scene;
     public float WPM;
-    public bool autoMode;
+    public bool autoMode, doubleWords;
     public Settings_save(Settings settings)
     {
         scene = settings._scene;
         WPM = settings.WPM;
         autoMode = settings.autoMode;
+        doubleWords = settings.doublWordCount;
     }
 
-    public Settings_save(Settings_save settings, float newWPM, bool newAutoMode)
+    public Settings_save(Settings_save settings, float newWPM, bool newAutoMode, bool newWordCount)
     {
         scene = settings.scene;
         WPM = newWPM;
         autoMode = newAutoMode;
+        doubleWords = newWordCount;
     }
 
-    public Settings_save(string newScene, float newWPM, bool newAutoMode)
+    public Settings_save(string newScene, float newWPM, bool newAutoMode, bool newWordCount)
     {
         scene = newScene;
         WPM = newWPM;
         autoMode = newAutoMode;
+        doubleWords = newWordCount;
     }
 
 }

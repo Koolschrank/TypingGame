@@ -188,6 +188,7 @@ public class SceneTransitioner : MonoBehaviour
 
     public void LoadGameFile()
     {
+        FindObjectOfType<AudioBox>().PlayBackgroundMusic(0);
         saveTest = true;
         onCheckPoint = true;
         TransitionScene(settings._scene, "IntoBackpack"); //replaceCurrent scene with save scene which you have to create first

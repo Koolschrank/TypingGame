@@ -27,4 +27,4 @@ MonoBehaviour:
   ice: 1
   thunder: 0
   passiveSkills: 0000000007000000
-  info: Takes damage from any kind of healing
+  info: Takes damage from healing spells and items.

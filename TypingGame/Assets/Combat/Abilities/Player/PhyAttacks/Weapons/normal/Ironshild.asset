@@ -56,7 +56,7 @@ MonoBehaviour:
   impact_size: 1
   castSound: {fileID: 0}
   soundVolume: 1
-  _info: Raises defence by 10 for 1 turn
+  _info: Raises defence by 7 for 1 turn
   effect_array:
   - effect: 2
     value1: 13
